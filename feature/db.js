@@ -25,18 +25,23 @@ db = {
 			username: String,
 			displayname: String,
 			password: String,
-			twitterId: String,
-			facebookId: String,
-			googleId: String,
-			facebookToken: String,
-			email: [String],
-			gender: String,
-			address: [String],
-			firstName: String,
-			lastName: String,
-			admin: Boolean
+			email: String
 		});
 		this.user_model = model;
+		return model;
+	},
+	GetActivityModel:function(){
+		var model = this.activity_model || mongoose.model('Activity', {
+			AuthorId: String,
+			AuthorTime: String,
+			ActivityTime: String,
+			ActivityDuration: String,
+			ActivityPoints: String,
+			ActivityTitle: String,
+			ActivitySubtitle: String,
+			ActivityText: String,
+		});
+		this.activity_model = model;
 		return model;
 	}
 };

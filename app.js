@@ -3,9 +3,9 @@ var http = require('http');
 
 var useLogin = true;
 var useSignup = true;
-var useTwitter = true;
-var useFacebook = true;
-var useGoogle = true;
+var useTwitter = false;
+var useFacebook = false;
+var useGoogle = false;
 var features = {};
 
 var port = normalizePort(process.env.PORT || '3000');
@@ -13,8 +13,16 @@ var port = normalizePort(process.env.PORT || '3000');
 features.db = require('./feature/db.js').Setup({
 });
 
-features.route = require('./feature/route.js').Setup({
-	useTwitter: useTwitter
+features.route = require('./feature/route.js').Setup({});
+
+features.authenticate = require('./feature/authenticate.js').Setup({
+	app:         features.route.GetApp(),
+	route:       features.route,
+	useLogin:    useLogin,
+	useSignup:   useSignup,
+	useTwitter:  useTwitter,
+	useFacebook: useFacebook,
+	useGoogle:   useGoogle
 });
 
 features.route.SetupStaticRoutes();
@@ -25,6 +33,7 @@ features.style = require('./feature/style').Setup({
 });
 
 features.route
+	.SetupPassportRoutes()
 	.SetupErrorRoutes()
 	.SetupDynamicRoutes();
 

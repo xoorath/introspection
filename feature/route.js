@@ -21,8 +21,19 @@ gitrev.branch(function(branch) { git.branch = branch; });
 gitrev.tag(function(tag) { git.tag = tag; });
 gitrev.logobj(function(log) { git.history = log; }, 6);
 
-var renderParam = function(req, obj)
-{
+var isAuthenticated = function (req, res, next) {
+	if (req.isAuthenticated())
+		return next();
+	res.redirect('/');
+};
+
+var isNotAuthenticated = function(req, res, next) {
+	if (!req.isAuthenticated())
+		return next();
+	res.redirect('/');
+}
+
+var renderParam = function(req, obj) {
 	if(req.user)
 		obj.user = req.user;
 	if(req.path)
@@ -70,8 +81,31 @@ module.exports = {
 		var app = this.app;
 
 		router.get('/', function(req, res) {
+			console.log('router: /');
 			res.render('index', renderParam(req, {}));
 		});
+
+		router.get('/signup', isNotAuthenticated, function(req, res) {
+			console.log('router: /signup');
+			res.render('register', renderParam(req, {}));
+		});
+
+		router.get('/login', isNotAuthenticated, function(req, res) {
+			console.log('router: /login');
+			res.render('login', renderParam(req, {}));
+		});
+
+		router.get('/signout', function(req, res) {
+			console.log('router: /signout');
+			req.logout();
+			res.redirect('/');
+		});
+
+		// router.get('/home', isAuthenticated, function(req, res) {
+		// 	console.log('router: /home');
+		// 	res.render('home', renderParam(req, {}));
+		// });
+
 
 		this.app = app;
 		return this;
@@ -91,6 +125,27 @@ module.exports = {
 		app.use(express.static(setup_args.path));
 		console.log('styler set up path: ' + setup_args.path);
 		console.log('styler set up middleware?' + (setup_args.middleware != null ? 'y' : 'n'))
+		return this;
+	},
+
+	SetupPassportRoutes:function() {
+		console.log('route.SetupPassportRoutes');
+		var passport = require('passport');
+		var app = this.app;
+
+		router.post('/login', passport.authenticate('login', {
+			successRedirect: '/',
+			failureRedirect: '/',
+			failureFlash : true
+		}));
+
+		router.post('/signup', passport.authenticate('signup', {
+			successRedirect: '/',
+			failureRedirect: '/signup',
+			failureFlash : true
+		}));
+
+		app.use('/', router);
 		return this;
 	},
 

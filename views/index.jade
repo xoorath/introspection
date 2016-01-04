@@ -1,10 +1,31 @@
+
 extends layout
 
 block content
 	div.row
-		div.col-xs-12.col-sm-6.col-md-4.col-md-offset-4.col-sm-offset-3
-			+message
-			div.wall
-				h1 index jade
-				p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum nostrum ad quasi repudiandae, ratione. Similique excepturi officiis nisi dolorum. Soluta culpa id velit explicabo hic. Magni quisquam, aspernatur animi. Praesentium.
-				p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque eveniet nulla at accusamus harum laborum ea optio soluta nostrum! Eius voluptatem laboriosam hic cum? Consectetur repudiandae quia sint facilis harum.
+		+message
+		div.wall
+			.content
+				h1.text-center XOORATH
+				h5.text-center a collection of creative works
+		div.wall
+			.content
+				div.row
+					div.col-xs-4
+						div.strip
+							h1.text-center digital
+							img(src="https://placehold.it/400x1200").img-responsive
+							br
+							p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
+					div.col-xs-4.strip
+						div.strip
+							h1.text-center physical
+							img(src="https://placehold.it/400x1200").img-responsive
+							br
+							p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto sapiente nesciunt, sed tenetur iste doloribus! Recusandae perspiciatis voluptatibus amet dolorum, ab laboriosam voluptates rem commodi, ipsam impedit dolores pariatur id!
+					div.col-xs-4.strip
+						div.strip
+							h1.text-center experimental
+							img(src="https://placehold.it/400x1200").img-responsive
+							br
+							p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis perferendis corporis quas nobis iure laudantium nostrum odit aut maxime accusamus, possimus, vel magnam animi, obcaecati libero distinctio tempore consectetur dolores.
