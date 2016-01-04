@@ -5,9 +5,9 @@ block content
 	div.row
 		+message
 		div.wall
-			.content
-				h1.text-center XOORATH
-				h5.text-center a collection of creative works
+			.content.title-content
+				h1 xoorath
+				h5 a collection of works
 				ul.title-list
 					li.fa.fa-twitter 
 						a(href="#") twitter
@@ -20,23 +20,21 @@ block content
 					//- li.fa.fa-gamepad 
 					//- 	a(href="#") http://scribble.city
 		div.wall
-			.content
+			.content.inner-content
 				div.row
-					div.col-xs-4
-						div.strip
-							h1.text-center digital
-							img(src="https://placehold.it/400x1200").img-responsive
-							br
-							p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
-					div.col-xs-4.strip
-						div.strip
-							h1.text-center physical
-							img(src="https://placehold.it/400x1200").img-responsive
-							br
-							p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto sapiente nesciunt, sed tenetur iste doloribus! Recusandae perspiciatis voluptatibus amet dolorum, ab laboriosam voluptates rem commodi, ipsam impedit dolores pariatur id!
-					div.col-xs-4.strip
-						div.strip
-							h1.text-center experimental
-							img(src="https://placehold.it/400x1200").img-responsive
-							br
-							p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis perferendis corporis quas nobis iure laudantium nostrum odit aut maxime accusamus, possimus, vel magnam animi, obcaecati libero distinctio tempore consectetur dolores.
+					h3 output
+					img(src="https://placehold.it/600x200").img-responsive
+					br
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
+				div.row
+					hr
+					h3 categories - 12 months
+					include ./widgets/placeholder-blockgraph.jade
+					br
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
+				div.row
+					hr
+					h3 categories - all
+					include ./widgets/placeholder-blockgraph.jade
+					br
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?

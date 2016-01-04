@@ -9,7 +9,7 @@ html
 		script(src='/jquery/jquery.min.js')
 		script(src='/bootstrap/bootstrap.min.js')
 	body
-		.container
+		.container.main-content
 			mixin message
 				#message
 					if message != null && message != ""
@@ -18,7 +18,7 @@ html
 							p #{message}
 			block content
 		.footer
-			.container
+			.container.footer-content
 				div.col-sm-4.col-xs-offset-4
 				if git
 					.gitlog
@@ -45,10 +45,10 @@ html
 											div.subject #{log.message.subject}
 										if log.message.body && log.message.body != ""
 											div.body #{log.message.body}
-			if path == "/"
-				if !user
-					span.logoutbutton
-						a(href='/login', class='new-account') admin
-				else
-					span.logoutbutton
-						a(href='/signout', class='new-account') logout
+				if path == "/"
+					if !user
+						span.logoutbutton
+							a(href='/login', class='new-account') admin
+					else
+						span.logoutbutton
+							a(href='/signout', class='new-account') logout
