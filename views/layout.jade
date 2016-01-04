@@ -1,0 +1,45 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/layout.css')
+		link(rel='stylesheet', href='/bootstrap/bootstrap.min.css')
+		link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
+		script(src='/jquery/jquery.min.js')
+		script(src='/bootstrap/bootstrap.min.js')
+	body
+		.container
+			mixin message
+				#message
+					if message != null && message != ""
+						div.alert.alert-danger.fade.in
+							a(href='#', class='close', data-dismiss='alert', aria-label='close') &times;
+							p #{message}
+			block content
+		.footer
+			.container
+				if git
+					.gitlog
+						.title-section.row
+							.col-xs-4.col-xs-offset-4
+								if git.branch
+									p.col-sm-4 branch: 
+										a(href='https://github.com/xoorath/marmar/tree/#{git.branch}') #{git.branch}
+								if git.sha
+									p.col-sm-4 commit: 
+										a(href='https://github.com/xoorath/marmar/commit/#{git.sha.long}') #{git.sha.short}
+								if git.tag
+									p.col-sm-4 tag: #{git.tag}
+						if git.history
+							.bar
+								span recent changes
+							.row.history
+								each log in git.history.length ? git.history : [['no history to show']]
+									.log.col-sm-4.section
+										a(href='https://github.com/xoorath/marmar/commit/#{log.commit.long_hash}') #{log.author.date.from_now}
+										span.spacer by 
+											a(href='https://github.com/#{log.author.name}') #{log.author.name}
+										if log.message.subject && log.message.subject != ""
+											div.subject #{log.message.subject}
+										if log.message.body && log.message.body != ""
+											div.body #{log.message.body}
