@@ -1,40 +1,52 @@
 
 extends layout
 
+block includes
+
 block content
 	div.row
 		+message
 		div.wall
 			.content.title-content
-				h1 xoorath
-				h5 a collection of works
+				h1 JARED THOMSON
+				h5 A COLLECTION OF WORKS
 				ul.title-list
-					li.fa.fa-twitter 
-						a(href="#") twitter
-					li.fa.fa-github
-						a(href="#") github
-					li.fa.fa-file-text 
-						a(href="#") resume
-					li.fa.fa-envelope
-						a(href="#") email
-					//- li.fa.fa-gamepad 
-					//- 	a(href="#") http://scribble.city
+					li
+						a(href="http://twitter.com/xoorath").fa.fa-twitter
+					li
+						a(href="http://github.com/xoorath").fa.fa-github-alt
+					li
+						a(href="http://scribble.city").fa.fa-gamepad
+					li
+						a(href="mailto:jared@xoorath.com").fa.fa-envelope
+					li
+						a(href="/resume.pdf").fa.fa-file-text
+				i.pull-right right now: Programming at SnowedIn for 6.72h
 		div.wall
 			.content.inner-content
 				div.row
-					h3 output
-					img(src="https://placehold.it/600x200").img-responsive
+					h3 OUTPUT
+					- var n = 0;
+					div.horiz-graph-64
+						while n < 64
+							- var r = Math.abs(Math.floor(Math.random() * 50 + 100))-50
+							- var c = Math.floor(Math.random() * 5)
+							span(style="height:" + r + "px; margin-top:" + (100-r) + "px", class="cat" + c).entry
+							- n++
+
 					br
 					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
 				div.row
 					hr
-					h3 categories - 12 months
+					h3 CATEGORIES 
+						small(style="vertical-align:middle") : 12 MONTHS
 					include ./widgets/placeholder-blockgraph.jade
 					br
 					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
 				div.row
 					hr
-					h3 categories - all
+					h3 CATEGORIES 
+						small(style="vertical-align:middle") : ALL
 					include ./widgets/placeholder-blockgraph.jade
 					br
 					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?

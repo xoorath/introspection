@@ -4,6 +4,8 @@ color-primary-2 = #696969
 color-primary-3 = #222222
 color-primary-4 = #020203
 
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,700');
+
 BackgroundColor = color-primary-1
 WallColor = white
 LinkColor = color-primary-2
@@ -21,6 +23,9 @@ body
   background-color BackgroundColor
   color TextMainColor
 
+h1, h2, h3, h4, h5, h6, subtitle, blockquote, em, i
+  font-family: 'Josefin Slab', serif;
+
 a
   color LinkColor
 
@@ -31,47 +36,58 @@ color-graph-3 = #bababa
 color-graph-4 = #8c8c8c
 
 .block-graph
-  
-  //max-width 64em
-  i
+  span.description
     float left
     color white
     position relative
-    width 0
+    width auto
     height 0
-    left 1em
-    top 0px
+    left 0.25em
+    top 0.125em
   .block-node
     float left
-    background-color red
-    width 1em
-    height 1em
+    width 1.5em
+    height 1.5em
     // outline 1px solid white
   .section-divider
     float left
-    width 1em // any width will do, forces text at the end of a line to the next line
+    width 1.5em // any width will do, forces text at the end of a line to the next line
     position relative
+  a
+    outline 1px solid rgba(1, 1, 1, 0)
+  a:hover
+    outline 1px solid black
+    transition outline 0.1s ease
   .cpp
-    background-color color-graph-0
-  .cpp:hover
     background-color color-graph-0
   .cs
     background-color color-graph-3
-  .cs:hover
-    background-color color-graph-3
   .js
-    background-color color-graph-2
-  .js:hover
     background-color color-graph-2
   .ruby
     background-color color-graph-1
-  .ruby:hover
+  .boo
+    background-color color-graph-4
+    
+.horiz-graph-64
+  width auto
+  height 100px
+  .entry
+    width 1.5625% // will take up 100% if 64 entries are there
+    background-color color-graph-0
+    float left
+    position relative
+    bottom 0px
+  .cat0
+    background-color color-graph-0
+  .cat1
+    background-color color-graph-3
+  .cat2
+    background-color color-graph-2
+  .cat3
     background-color color-graph-1
-  .boo
+  .cat4
     background-color color-graph-4
-  .boo
-    background-color color-graph-4
-
 
 .form-signin
   padding 15px
@@ -111,6 +127,11 @@ color-graph-4 = #8c8c8c
   -moz-box-shadow 0px 2px 2px rgba(0, 0, 0, 0.3)
   -webkit-box-shadow 0px 2px 2px rgba(0, 0, 0, 0.3)
   box-shadow 0px 2px 2px rgba(0, 0, 0, 0.3)
+  .title-content
+    width auto
+    text-align center
+    i
+      color alpha(color-primary-1, 0.5)
   .content
     padding-left 40px
     padding-right 40px
@@ -120,9 +141,13 @@ color-graph-4 = #8c8c8c
     .title-list
       padding-left 0px
       li
+        display inline
         padding-right 1em
         a
           padding-left 1em
+          text-decoration none
+          font-size 2em
+          color alpha(color-primary-1, 0.5)
 .login-title
   color #555
   font-size 18px
