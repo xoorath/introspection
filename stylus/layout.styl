@@ -162,6 +162,8 @@ footer-background-color = WallColor
   .title-section
     padding-bottom 2em
   .bar
+    @media screen and (max-width: width-sm)
+      display none
     height 1px
     background-color darken(footer-background-color, 20%)
     text-align center
@@ -173,11 +175,17 @@ footer-background-color = WallColor
       top -0.5em
       font-style italic
   .history
-    .log
-      min-height 100px
     padding-top 2em
+    @media screen and (max-width: width-sm)
+      display none
+    .log
+      min-height 120px
     .subject
+      text-align center
+      color alpha(color-primary-2, 50%)
+    .body
       text-align left
+      color alpha(color-primary-1, 50%)
 
 .side-img
   margin 0
