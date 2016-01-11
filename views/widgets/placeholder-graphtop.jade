@@ -1,0 +1,9 @@
+ul#description
+		- var n = 0;
+		while n < l.length
+			li
+				a(href=l[n].url).block(class="cat"+n) 
+					span.label &#9711;
+				a(href=l[n].url class='cat'+n+'ln')= l[n].t
+			- n++;
+div.clearfix

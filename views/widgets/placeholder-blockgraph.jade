@@ -1,36 +1,18 @@
+- var l = [{t:'c plus plus', url:'#cpp', d: 220}, {t:'c sharp', url:'#cs', d:199}, {t:'javascript', url:'#js', d:82}, {t:'boo', url:'#boo', d:77}, {t:'ruby', url:'#ruby', d:142}];
+
 div.block-graph
-	- var n = 0;
-	a(href="#cpp")
-		span.description C PLUS PLUS
-		while n < 420
-			span.block-node.cpp
+	include placeholder-graphtop.jade
+	div.data
+		- var n = 0;
+		while n < l.length
+			-var i = 0;
+			a(href=l[n].url)
+				while i < l[n].d
+					if i == 0
+						span.block-node(class="cat"+n) &#9702;
+					else
+						span.block-node(class="cat"+n)
+					- i++
 			- n++
-	- var n = 0;
-	span.section-divider
-	a(href="#cs")
-		span.description C SHARP
-		while n < 220
-			span.block-node.cs
-			- n++
-	- var n = 0;
-	span.section-divider
-	a(href="#js")
-		span.description JAVASCRIPT
-		while n < 200
-			span.block-node.js
-			- n++
-	- var n = 0;
-	span.section-divider
-	a(href="#boo")
-		span.description BOO
-		while n < 180
-			span.block-node.boo
-			- n++
-	- var n = 0;
-	span.section-divider
-	a(href="#ruby")
-		span.description RUBY
-		while n < 100
-			span.block-node.ruby
-			- n++
-div.clearfix 
+div.clearfix
+br

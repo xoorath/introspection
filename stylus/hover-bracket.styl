@@ -1,0 +1,20 @@
+// Translated from mary lou's source at codrops:
+// http://tympanus.net/codrops/2013/08/06/creative-link-effects/
+// THANK YOU MARY LOU!
+
+hover-bracket(spacing = 10px, flyin = 20px)
+  a::before, a::after
+    display inline-block
+    opacity 0
+    transition transform 0.3s, opacity 0.2s
+  a::before
+    margin-right spacing
+    content '◬'
+    transform translateX(flyin)
+  a::after
+    margin-left spacing
+    content '◬'
+    transform translateX(-(flyin))
+  a:hover::before, a:hover::after, a:focus::before, a:focus::after
+    opacity 1
+    transform translateX(0)

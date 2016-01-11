@@ -1,0 +1,29 @@
+@import "colors"
+@import "graphtop"
+.block-graph
+  margin-left auto
+  margin-right auto
+  height auto
+  display block
+  #description
+    graphtop()
+  .block-node
+    float left
+    width 2%
+    height 1em
+    //outline 1px solid white
+  .data
+    height 200px
+    a
+      for cat in cat-vals
+        .{cat[0]}
+          background-color cat[2]
+          color cat[3]
+          text-align center
+          vertical-align middle
+          transition background-color 0.3s ease
+    a:hover
+      transition background-color 0.25s ease
+      for cat in cat-vals
+        .{cat[0]}
+          background-color cat[3]

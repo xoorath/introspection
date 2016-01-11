@@ -1,0 +1,11 @@
+- var l = [{t:'c plus plus', url:'#cpp'}, {t:'c sharp', url:'#cs'}, {t:'javascript', url:'#js'}, {t:'boo', url:'#boo'}, {t:'ruby', url:'#ruby'}];
+div.horiz-graph-64
+  include placeholder-graphtop.jade
+  div.data
+    - var n = 0;
+    while n < 64
+      - var r = Math.abs(Math.floor(Math.random() * 50 + 100))-50
+      - var c = Math.floor(Math.random() * l.length)
+      a(href=l[c].url class="cat"+c)
+        span(style="height:" + r + "px; margin-top:" + (100-r) + "px", class="cat" + c).entry &#9702;
+      - n++

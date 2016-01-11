@@ -4,49 +4,28 @@ extends layout
 block includes
 
 block content
-	div.row
-		+message
-		div.wall
-			.content.title-content
-				h1 JARED THOMSON
-				h5 A COLLECTION OF WORKS
-				ul.title-list
-					li
-						a(href="http://twitter.com/xoorath").fa.fa-twitter
-					li
-						a(href="http://github.com/xoorath").fa.fa-github-alt
-					li
-						a(href="http://scribble.city").fa.fa-gamepad
-					li
-						a(href="mailto:jared@xoorath.com").fa.fa-envelope
-					li
-						a(href="/resume.pdf").fa.fa-file-text
-				i.pull-right right now: Programming at SnowedIn for 6.72h
-		div.wall
-			.content.inner-content
-				div.row
-					h3 OUTPUT
-					- var n = 0;
-					div.horiz-graph-64
-						while n < 64
-							- var r = Math.abs(Math.floor(Math.random() * 50 + 100))-50
-							- var c = Math.floor(Math.random() * 5)
-							span(style="height:" + r + "px; margin-top:" + (100-r) + "px", class="cat" + c).entry
-							- n++
-
-					br
-					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
-				div.row
-					hr
-					h3 CATEGORIES 
-						small(style="vertical-align:middle") : 12 MONTHS
-					include ./widgets/placeholder-blockgraph.jade
-					br
-					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
-				div.row
-					hr
-					h3 CATEGORIES 
-						small(style="vertical-align:middle") : ALL
-					include ./widgets/placeholder-blockgraph.jade
-					br
-					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quo mollitia repudiandae ipsum veritatis, alias dolores, eaque iste iusto libero vel provident modi recusandae voluptatum ex fugit voluptate perferendis veniam?
+  div.row
+    +message
+    include ./widgets/title-home.jade
+    include ./widgets/title-mini.jade
+    div.wall
+      .content#inner-content
+        div.row
+          h3 OUTPUT
+            small : time spent over 64 days
+          include ./widgets/placeholder-horiz64graph.jade
+          include ./widgets/placeholder-post.jade
+        div.row
+          hr
+          h3 CATEGORIES 
+            small : 12 MONTHS
+          include ./widgets/placeholder-blockgraph.jade
+          include ./widgets/placeholder-post.jade
+        div.row
+          hr
+          h3 CATEGORIES 
+            small : ALL
+          include ./widgets/placeholder-blockgraph.jade
+          include ./widgets/placeholder-post.jade
+        div.row
+          #endofpage

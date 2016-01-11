@@ -1,19 +1,7 @@
-color-primary-0 = #494949
-color-primary-1 = #89898A
-color-primary-2 = #696969
-color-primary-3 = #222222
-color-primary-4 = #020203
+@import "colors"
+@import "hover-bracket"
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,700');
-
-BackgroundColor = color-primary-1
-WallColor = white
-LinkColor = color-primary-2
-TextMainColor = color-primary-2
-TextSpecialColor = color-primary-3
-
-.title-content
-  h1
 
 body
   padding 5px
@@ -29,96 +17,8 @@ h1, h2, h3, h4, h5, h6, subtitle, blockquote, em, i
 a
   color LinkColor
 
-color-graph-0 = #755e55
-color-graph-1 = #827b7c
-color-graph-2 = #b5b5b5
-color-graph-3 = #bababa
-color-graph-4 = #8c8c8c
-
-.block-graph
-  span.description
-    float left
-    color white
-    position relative
-    width auto
-    height 0
-    left 0.25em
-    top 0.125em
-  .block-node
-    float left
-    width 1.5em
-    height 1.5em
-    // outline 1px solid white
-  .section-divider
-    float left
-    width 1.5em // any width will do, forces text at the end of a line to the next line
-    position relative
-  a
-    outline 1px solid rgba(1, 1, 1, 0)
-  a:hover
-    outline 1px solid black
-    transition outline 0.1s ease
-  .cpp
-    background-color color-graph-0
-  .cs
-    background-color color-graph-3
-  .js
-    background-color color-graph-2
-  .ruby
-    background-color color-graph-1
-  .boo
-    background-color color-graph-4
-    
-.horiz-graph-64
-  width auto
-  height 100px
-  .entry
-    width 1.5625% // will take up 100% if 64 entries are there
-    background-color color-graph-0
-    float left
-    position relative
-    bottom 0px
-  .cat0
-    background-color color-graph-0
-  .cat1
-    background-color color-graph-3
-  .cat2
-    background-color color-graph-2
-  .cat3
-    background-color color-graph-1
-  .cat4
-    background-color color-graph-4
-
-.form-signin
-  padding 15px
-  margin 0 auto
-  .checkbox
-    font-weight normal
-  .form-control
-    position relative
-    font-size 16px
-    height auto
-    padding 10px
-    -webkit-box-sizing border-box
-    -moz-box-sizing border-box
-    box-sizing border-box
-    &:focus
-      z-index 2
-  input[type="text"]
-    margin-bottom -1px
-    border-bottom-left-radius 0
-    border-bottom-right-radius 0
-  input[type="password"]
-    margin-bottom 10px
-    border-top-left-radius 0
-    border-top-right-radius 0
-  input[type="password"].nomargin
-    margin-bottom 0px
-    border-top-left-radius 0
-    border-top-right-radius 0
-
-.form-signin .form-signin-heading, .form-signin .checkbox
-  margin-bottom 10px
+.post
+  margin-bottom 5em
 
 .wall
   margin-top 20px
@@ -127,62 +27,79 @@ color-graph-4 = #8c8c8c
   -moz-box-shadow 0px 2px 2px rgba(0, 0, 0, 0.3)
   -webkit-box-shadow 0px 2px 2px rgba(0, 0, 0, 0.3)
   box-shadow 0px 2px 2px rgba(0, 0, 0, 0.3)
-  .title-content
-    width auto
-    text-align center
-    i
-      color alpha(color-primary-1, 0.5)
   .content
     padding-left 40px
     padding-right 40px
-    h3
-      padding-top 20px
-      clear both
-    .title-list
+    h3 
+      small
+        position relative
+        bottom 0.25em
+  #title-content
+    width auto
+    
+    text-align center
+    h1
+      hover-bracket()
+      a
+        color TitleColor
+        text-decoration none
+      a:hover
+        color TitleColor
+    h5
+      margin-bottom 1.5em
+    i
+      color alpha(color-primary-1, 0.5)
+    #title-list
       padding-left 0px
+      li:not(:last-child)
+        padding-right 1em
+      li:not(:first-child)
+        padding-left 1em
       li
         display inline
-        padding-right 1em
         a
-          padding-left 1em
           text-decoration none
           font-size 2em
+          transition color 0.3s
           color alpha(color-primary-1, 0.5)
+        a:hover
+          color color-primary-4
+  #title-mini-content
+    width auto
+    h2
+      display inline-block
+      hover-bracket()
+      a
+        color TitleColor
+        text-decoration none
+      a:hover
+        color TitleColor
+    #title-list
+      display inline-block
+      position relative
+      top 1.5em
+      float right
+      padding-right 1em
+      li:not(:first-child)
+        padding-left 1em
+      li
+        display inline
+        a
+          margin-left 1em
+          text-decoration none
+          font-size 1.5em
+          transition color 0.3s
+          color alpha(color-primary-1, 0.5)
+        a:hover
+          color color-primary-4
 .login-title
   color #555
   font-size 18px
   font-weight 400
   display block
 
-.profile-img
-  width 96px
-  height 96px
-  margin 0 auto 10px
-  display block
-  -moz-border-radius 50%
-  -webkit-border-radius 50%
-  border-radius 50%
-
-.new-account
-  display block
-  margin 20px
-  text-align right
-a.new-account:link 
-  text-decoration: none;
-a.new-account:visited
-  text-decoration: none;
-a.new-account:hover
-  text-decoration: none;
-a.new-account:active
-  text-decoration: none;
-
 .error-message
   color red
-
-.key
-  margin-left 1em
-
-.val
 
 .social
   padding-bottom 0.5em
@@ -198,8 +115,6 @@ a.new-account:active
 
 footer-background-color = WallColor
 
-.logoutbutton
-  margin 20px  
 .footer
   background-color footer-background-color
   padding-top 2em
@@ -220,6 +135,27 @@ footer-background-color = WallColor
     margin 0px
   a
     color LinkColor
+  #loginout
+    display inline
+    float left
+  a#loginout:link 
+    text-decoration: none;
+  a#loginout:visited
+    text-decoration: none;
+  a#loginout:hover
+    text-decoration: none;
+  a#loginout:active
+    text-decoration: none;
+  #attribution
+    float right
+    #author
+      font-weight bold
+      color color-primary-4
+    #copyright
+      font-weight none
+      color color-primary-4
+    #licence
+      color alpha(color-primary-2, 0.5)
 
 .gitlog
   text-align center
@@ -242,3 +178,11 @@ footer-background-color = WallColor
     padding-top 2em
     .subject
       text-align left
+
+.side-img
+  margin 0
+  width 100%
+
+[class*='col-'].no-gutter
+  padding-right 0
+  padding-left 0

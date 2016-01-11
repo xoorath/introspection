@@ -1,0 +1,25 @@
+@import "colors"
+@import "graphtop"
+
+strokewidth = 1px
+.horiz-graph-64
+  #description
+    graphtop()
+  .data
+    width auto
+    height 100px
+    margin-bottom 2em
+    .entry
+      width 1.5625% // will take up 100% if 64 entries are there
+      background-color color-graph-0
+      float left
+      position relative
+      bottom 0px
+      outline strokewidth solid white
+      outline-offset -(strokewidth)
+    for cat in cat-vals
+      .{cat[0]}
+        background-color cat[2]
+        color cat[3]
+        text-align center
+        transition background-color 0.3s ease

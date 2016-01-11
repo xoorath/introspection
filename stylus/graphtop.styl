@@ -1,0 +1,33 @@
+cat-trailing-space = 2em
+cat-leading-space = 0.5em
+
+graphtop()
+  padding-bottom 2em
+  padding-left 0
+  li
+    display block
+    float left
+    .block
+      float left
+      width 1em
+      height 1em
+      margin-right cat-leading-space
+      .label
+        display block
+        padding 0
+        margin 0
+        margin-top 0.5em
+        font-size 0.5em
+        @media screen and (max-width: width-sm)
+          display none
+    a
+      position relative
+      bottom 0.25em
+      text-decoration none
+  for cat in cat-vals
+    .{cat[0]}
+      background-color cat[2]
+      .label
+        color cat[3]
+    .{cat[1]}
+      margin-right cat-trailing-space
