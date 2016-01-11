@@ -1,0 +1,50 @@
+extends layout
+
+block includes
+
+block content
+  .row
+    include ./widgets/title-mini.jade
+  .row
+    +message
+  div.row
+    div.wall
+      .content#inner-content
+        div.row
+          h3 POST
+            small : create a new post
+            form(class='form-signin', action='/newpost', method='POST')
+              .col-sm-6
+                .row
+                  br
+                  .col-sm-2
+                    label subject
+                  .col-sm-10
+                    input(type='text', name='subject' class='form-control', placeholder='',required)
+                .row
+                  br
+                  .col-sm-2
+                    label body
+                  .col-sm-10
+                    textarea.form-control(name="body" rows="5" required)
+                .row
+                  br
+                  .col-sm-5.col-sm-offset-2
+                    button(class='btn btn-sm btn-primary btn-block', type='submit') SAVE
+                  .col-sm-5
+                    button(class='btn btn-sm btn-primary btn-block', type='submit') POST
+              span.clearfix
+          h3 COMMAND
+            form(class='form-signin', action='/command', method='POST')
+              .col-sm-6
+                .row
+                  br
+                  .col-sm-2
+                    label cmd
+                  .col-sm-10
+                    input(type='text', name='command' class='form-control', placeholder='', autofocus)
+                .row
+                  br
+                  .col-sm-10.col-sm-offset-2
+                    button(class='btn btn-sm btn-primary btn-block', type='submit') EXECUTE
+              span.clearfix

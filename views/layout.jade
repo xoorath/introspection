@@ -21,11 +21,12 @@ html
   body
     .container.main-content
       mixin message
-        #message
-          if message != null && message != ""
-            div.alert.alert-danger.fade.in
-              a(href='#', class='close', data-dismiss='alert', aria-label='close') &times;
-              p #{message}
+        .message-section
+          if message != null && message.length > 0
+            for m in message
+              div.alert(class="#{m.style} .fade .in")
+                a(href='#', class='close', data-dismiss='alert', aria-label='close') &times;
+                p #{m.msg}
       block content
     .footer
       .container.footer-content
@@ -64,7 +65,8 @@ html
           if !user
             a(href='/login')#loginout +
           else
-            a(href='/signout')#loginout -
+            a(href='/signout')#loginout - 
+            a(href='/post')#loginout p 
         span#attribution
           a(href="http://twitter.com/xoorath")#author Jared Thomson 
           span#copyright © 2015 

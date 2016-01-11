@@ -85,6 +85,11 @@ module.exports = {
 			res.render('index', renderParam(req, {}));
 		});
 
+		router.get('/post', isAuthenticated, function(req, res) {
+			console.log('router: /post');
+			res.render('post', renderParam(req, {}));
+		});		
+
 		router.get('/signup', isNotAuthenticated, function(req, res) {
 			console.log('router: /signup');
 			res.render('register', renderParam(req, {}));
@@ -134,16 +139,31 @@ module.exports = {
 		var app = this.app;
 
 		router.post('/login', passport.authenticate('login', {
-			successRedirect: '/',
+			successRedirect: '/post',
 			failureRedirect: '/',
-			failureFlash : true
+			failureFlash : {style:'alert-danger', msg:'could not log in.'}
 		}));
 
 		router.post('/signup', passport.authenticate('signup', {
-			successRedirect: '/',
+			successRedirect: '/post',
 			failureRedirect: '/signup',
-			failureFlash : true
+			failureFlash : {style:'alert-danger', msg:'could not signup.'}
 		}));
+
+		router.post('/command', function (req, res) {
+			console.log('command');
+			var cmd = req.param('command', null);
+			
+			if(cmd == null || cmd == "") {
+				req.flash("message", {style:"alert-danger", msg:"no command passed"});
+				res.redirect("/post");
+				return;
+			}
+
+			req.flash("message", {style:"alert-success", msg:("executed: " + cmd)});
+			
+			res.redirect("/post");
+		});
 
 		app.use('/', router);
 		return this;
