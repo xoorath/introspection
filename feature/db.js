@@ -22,6 +22,7 @@ db = {
 	},
 	GetUserModel:function(){
 		var model = this.user_model || mongoose.model('User', {
+			valid: Boolean,
 			username: String,
 			displayname: String,
 			password: String,

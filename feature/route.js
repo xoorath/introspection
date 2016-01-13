@@ -22,9 +22,15 @@ gitrev.tag(function(tag) { git.tag = tag; });
 gitrev.logobj(function(log) { git.history = log; }, 6);
 
 var isAuthenticated = function (req, res, next) {
-	if (req.isAuthenticated())
-		return next();
-	res.redirect('/');
+	if (!req.isAuthenticated()) {
+		req.flash("message", {style:"alert-danger", msg:"you need to be logged in to do that"});
+		res.redirect('/');
+	}
+	if(req.user == null || req.user.valid != true) {
+		req.flash("message", {style:"alert-danger", msg:"invalid account"});
+		res.redirect('/');
+	}
+	return next();
 };
 
 var isNotAuthenticated = function(req, res, next) {
@@ -140,17 +146,22 @@ module.exports = {
 
 		router.post('/login', passport.authenticate('login', {
 			successRedirect: '/post',
-			failureRedirect: '/',
-			failureFlash : {style:'alert-danger', msg:'could not log in.'}
+			failureRedirect: '/login',
+			failureFlash : true
 		}));
 
 		router.post('/signup', passport.authenticate('signup', {
 			successRedirect: '/post',
 			failureRedirect: '/signup',
-			failureFlash : {style:'alert-danger', msg:'could not signup.'}
+			failureFlash : true
 		}));
 
-		router.post('/command', function (req, res) {
+		router.post('/command', function(req, res, next){
+			if (req.isAuthenticated())
+				return next();
+			req.flash("message", {style:"alert-danger", msg:"you need to be signed in to do that"});
+			res.redirect('/');
+		}, function (req, res) {
 			console.log('command');
 			var cmd = req.param('command', null);
 			
@@ -160,8 +171,7 @@ module.exports = {
 				return;
 			}
 
-			req.flash("message", {style:"alert-success", msg:("executed: " + cmd)});
-			
+			req.flash("message", {style:"alert-success", msg:("executed: \"" + cmd + "\"")});
 			res.redirect("/post");
 		});
 

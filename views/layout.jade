@@ -24,6 +24,7 @@ html
         .message-section
           if message != null && message.length > 0
             for m in message
+              - if(typeof m === "string") m = {style:'alert-danger', msg:m};
               div.alert(class="#{m.style} .fade .in")
                 a(href='#', class='close', data-dismiss='alert', aria-label='close') &times;
                 p #{m.msg}
