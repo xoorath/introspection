@@ -3,6 +3,10 @@
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,700');
 
+.row
+  margin-left 0
+  margin-right 0
+
 body
   padding 5px
   font 14px "Lucida Grande", Helvetica, Arial, sans-serif
@@ -120,6 +124,8 @@ a
 footer-background-color = WallColor
 
 .footer
+  @media print
+    display none !important
   background-color footer-background-color
   padding-top 2em
   .spacer
