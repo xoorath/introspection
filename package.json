@@ -20,6 +20,7 @@
     "mongoose": "~3.8.12",
     "morgan": "~1.6.1",
     "nib": "^1.1.0",
+    "pagedown": "^1.1.0",
     "passport": "~0.2.0",
     "passport-facebook": "^2.0.0",
     "passport-google-oauth": "^0.2.0",

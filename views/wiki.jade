@@ -15,4 +15,6 @@ block content
           h3=wikipath
             small : a place for things
         div.row
+          div!= md.makeHtml(wiki.content)
+        div.row
           #endofpage

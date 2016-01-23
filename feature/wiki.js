@@ -1,4 +1,4 @@
-module.exports = {
+var wiki = {
 	Setup:function(setupargs) {
 		this.db = setupargs.db || require('./db.js');
 		this.route = setupargs.route || require('./route.js');
@@ -75,22 +75,44 @@ module.exports = {
 					return fail('content not set');
 				if(!TryRequiredParam(date))
 					return fail('date not set');
-				var post = new this.wikiModel();
-				post.path = path;
-				post.title = title;
-				post.subtitle = subtitle;
-				post.content = content;
-				post.style = style;
-				post.author = author;
-				post.date = date;
-				post.save(function(err) {
-					if (err) {
-						fail(err);
-					} else {
-						succeed();
+
+				var SetAndSave = function(post) {
+					post.path = path;
+					post.title = title;
+					post.subtitle = subtitle;
+					post.content = content;
+					post.style = style;
+					post.author = author;
+					post.date = date;
+					post.save(function(err) {
+						if (err) {
+							fail(err);
+						} 
+						else {
+							succeed();
+						}
+					});
+				}
+
+				this.wikiModel.findOne({
+				'path':path
+				}, 
+				function(err, post) {
+					if(err) {
+						return fail(err);
+					}
+					else if(post) {
+						SetAndSave(post);
+					}
+					else {
+						var post = new wiki.wikiModel();
+						SetAndSave(post);
 					}
 				});
+
+				
 			break;
 		}
 	}
-}
+};
+module.exports = wiki;

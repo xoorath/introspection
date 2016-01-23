@@ -11,6 +11,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var db = require("./db.js");
 var wiki = require('./wiki.js');
+var pagedown = require("pagedown");
+var md = new pagedown.Converter();
 
 var gitrev = require('git-rev');
 var moment = require('moment');
@@ -129,7 +131,7 @@ path: String,
           });
         }
         else if(wiki != null) {
-          res.render('wiki', renderParam(req, {wikipath:wikipath, wiki:wiki}));
+          res.render('wiki', renderParam(req, {wikipath:wikipath, wiki:wiki, md:md}));
         }
         else {
           var err = new Error('Page not found');
@@ -274,7 +276,7 @@ path: String,
         date: date,
         success:function() {
           req.flash("message", {style:"alert-success", msg:("Wiki updated.")});
-          res.redirect("/");
+          res.redirect('/wiki/'+wikipath);
         },
         failure:function(err) {
           req.flash("message", {style:"alert-danger", msg:("updating this wiki page failed. err:"+err)});
