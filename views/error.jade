@@ -4,8 +4,20 @@ block content
 	div.wall
 		.content.title-content
 			h1= message
-			h2= error.status
+			if error
+				if error.status
+					h2= error.status
+				else
+					h2 no status to show.
+			else
+				h2 no error to show
 	div.wall
 		.content
 			h3 callstack:
-			pre #{error.stack}
+			if error
+				if error.stack
+					pre #{error.stack}
+				else
+					pre no stack to show
+			else
+				pre no error to show

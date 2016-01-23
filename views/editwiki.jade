@@ -1,0 +1,53 @@
+mixin input_txt(label, name, placeholder, txt)
+  .row
+    br
+    .col-sm-2
+      label=label
+    .col-sm-10
+      input(type='text', name=name, class='form-control', placeholder=placeholder, value=txt)
+
+mixin input_txtarea(label, name, placeholder, txt)
+  .row
+    br
+    .col-sm-2
+      label=label
+    .col-sm-10
+      textarea(name=name, class='form-control', placeholder=placeholder, text=txt)
+
+mixin input_const(name, value)
+  input(type='hidden', name=name, text=value)
+
+extends layout
+
+block includes
+
+block content
+  div.row
+    include ./widgets/title-home.jade
+  div.row
+    +message
+  div.row
+    div.wall
+      .content#inner-content
+        div.row
+          if wiki
+            h2 Edit Page : 
+              small= wikipath
+          else
+            h2 New Page : 
+              small= wikipath
+          h3 COMMAND
+            form(class='form-editwiki', action='/editwiki', method='POST')
+              .col-sm-6
+                +input_txt('wiki', 'wikipath', wikipath, wiki.wikipath || wikipath)
+                +input_txt('title', 'title', wikipath, wiki.title || '')
+                +input_txt('subtitle', 'subtitle', wiki.subtitle || '')
+                +input_txtarea('content', 'content', wiki.content || '')
+                +input_txt('style', 'style', wiki.style || '')
+                .row
+                  br
+                  .col-sm-10.col-sm-offset-2
+                    button(class='btn btn-sm btn-primary btn-block', type='submit') EXECUTE
+              span.clearfix
+        div.row
+          #endofpage

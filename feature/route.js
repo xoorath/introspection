@@ -9,11 +9,14 @@ var flash = require('connect-flash');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var db = require("./db.js");
+var wiki = require('./wiki.js');
 
 var gitrev = require('git-rev');
 var moment = require('moment');
 var git = {};
 git.sha = {};
+var wikimodel = db.GetWikiModel();
 
 gitrev.short(function(sha) { git.sha.short = sha; });
 gitrev.long(function(sha) { git.sha.long = sha; });
@@ -44,9 +47,11 @@ var renderParam = function(req, obj) {
     obj.user = req.user;
   if(req.path)
     obj.path = req.path;
-  var flash = req.flash('message');
-  if(flash)
-    obj.message = flash;
+  if(req.flash) {
+    var flash = req.flash('message');
+    if(flash)
+      obj.message = flash;
+  }
   obj.git = {};
   obj.git.branch = git.branch;
   obj.git.sha = git.sha;
@@ -89,6 +94,50 @@ module.exports = {
     router.get('/', function(req, res) {
       console.log('router: /');
       res.render('index', renderParam(req, {}));
+    });
+
+    router.get('/wiki/:entry*', function(req, res, next) {
+      console.log('router: /wiki');
+      var root = req.params.entry;
+      var sub = req.params[0];
+      var wikipath = root;
+      if(sub !== null) {
+        wikipath += sub;
+      }
+/*
+path: String,
+      title: String,
+      subtitle: String,
+      content: String,
+      style: String,
+      author: String,
+      date: String
+*/
+      wikimodel.findOne({
+        'path':wikipath
+      }, 
+      function(err, wiki) {
+        console.log(err, wiki);
+        if(req.isAuthenticated()){
+          res.render('editwiki', renderParam(req, {wikipath:wikipath, wiki:wiki}));
+        }
+        if(err != null) {
+          res.status(err.status || 500);
+          res.render('error', {
+            message: err.message,
+            error: err
+          });
+        }
+        else if(wiki != null) {
+          res.render('wiki', renderParam(req, {wikipath:wikipath, wiki:wiki}));
+        }
+        else {
+          var err = new Error('Page not found');
+          err.status = 404;
+          next(err);
+        }
+      });
+
     });
 
     router.get('/post', isAuthenticated, function(req, res) {
@@ -175,6 +224,65 @@ module.exports = {
       res.redirect("/post");
     });
 
+    router.post('/editwiki', function(req, res, next){
+      if (req.isAuthenticated())
+        return next();
+      req.flash("message", {style:"alert-danger", msg:"you need to be signed in to do that"});
+      res.redirect('/');
+    }, function (req, res) {
+      console.log('editwiki');
+
+      var TryGetRequireParam = function(req, res, name, required) {
+        var param = req.param(name, null);
+        if(param == null || (required && param == "")) {
+          req.flash("message", {style:"alert-danger", msg:"no " + name + " param passed"});
+          res.redirect("/");
+          return null;
+        }
+        return param;
+      }
+      
+      var wikipath = TryGetRequireParam(req, res, 'wikipath', true);
+      if(!wikipath)
+        return;
+
+      var title = TryGetRequireParam(req, res, 'title', true);
+      if(!title)
+        return;
+
+      var subtitle = TryGetRequireParam(req, res, 'subtitle', false);
+      if(!subtitle)
+        return;
+      
+      var content = TryGetRequireParam(req, res, 'content', true);
+      if(!content)
+        return;
+
+      var style = TryGetRequireParam(req, res, 'style', false);
+      if(!style)
+        return;
+
+      var date = new Date().toJSON().slice(0,10);
+      var author = req.user.displayname;
+
+      wiki.Update(wikipath, {
+        author:author,
+        title:title,
+        subtitle:subtitle,
+        content:content,
+        style: style,
+        date: date,
+        success:function() {
+          req.flash("message", {style:"alert-success", msg:("Wiki updated.")});
+          res.redirect("/");
+        },
+        failure:function(err) {
+          req.flash("message", {style:"alert-danger", msg:("updating this wiki page failed. err:"+err)});
+          res.redirect('/wiki/'+wikipath);
+        }
+      });
+    });
+
     app.use('/', router);
     return this;
   },
@@ -190,10 +298,10 @@ module.exports = {
     if (app.get('env') === 'development') {
       app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error', {
+        res.render('error', renderParam(req, {
           message: err.message,
           error: err
-        });
+        }));
       });
     }
     return this;

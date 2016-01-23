@@ -1,0 +1,18 @@
+
+extends layout
+
+block includes
+
+block content
+  div.row
+    include ./widgets/title-home.jade
+  div.row
+    +message
+  div.row
+    div.wall
+      .content#inner-content
+        div.row
+          h3=wikipath
+            small : a place for things
+        div.row
+          #endofpage

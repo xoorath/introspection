@@ -31,6 +31,19 @@ db = {
 		this.user_model = model;
 		return model;
 	},
+	GetWikiModel:function(){
+		var model = this.wiki_model || mongoose.model('Wiki', {
+			path: String,
+			title: String,
+			subtitle: String,
+			content: String,
+			style: String,
+			author: String,
+			date: String
+		});
+		this.wiki_model = model;
+		return model;
+	},
 	GetActivityModel:function(){
 		var model = this.activity_model || mongoose.model('Activity', {
 			AuthorId: String,

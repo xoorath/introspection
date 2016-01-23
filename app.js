@@ -37,6 +37,12 @@ features.route
 	.SetupErrorRoutes()
 	.SetupDynamicRoutes();
 
+features.wiki = require('./feature/wiki').Setup({
+	db: features.db,
+	route: features.route,
+	authenticate: features.authenticate
+});
+
 features.route.GetApp().set('port', port);
 var server = http.createServer(features.route.GetApp());
 
