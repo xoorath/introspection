@@ -48,11 +48,11 @@ block content
                 +input_txt('title', 'title', wikipath, (wiki ? wiki.title : null) || '')
                 +input_txt('subtitle', 'subtitle', '', (wiki ? wiki.subtitle : null) || '')
                 +input_txtarea('content', 'content', '', (wiki ? wiki.content : null) || '')
-                +input_txt('style', 'style', '', (wiki ? wiki.style : null) || '')
+                //+input_txt('style', 'style', '', (wiki ? wiki.style : null) || '')
                 .row
                   br
                   .col-sm-5.col-sm-offset-2
-                    button(class='btn btn-sm btn-primary btn-block', type='submit') POST
+                    a(class='btn btn-sm btn-primary btn-block', id='submit') POST
                   .col-sm-5
                     a(class='btn btn-sm btn-primary btn-block', id='preview', href='#content') PREVIEW
               span.clearfix

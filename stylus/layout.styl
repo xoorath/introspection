@@ -2,6 +2,7 @@
 @import "hover-bracket"
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,700');
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
 
 .row
   margin-left 0
@@ -9,20 +10,69 @@
 
 body
   padding 5px
-  font 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  font 14px "Droid Serif", serif
   .container
     padding-bottom 50px
+    max-width 970px
   background-color BackgroundColor
+  background-image: url(/img/bg.png);
   color TextMainColor
 
 h1, h2, h3, h4, h5, h6, subtitle, blockquote, em, i
   font-family: 'Josefin Slab', serif;
 
 a
-  color LinkColor
+  color black
 
+description()
+  padding-top 1em
+  font-family: 'Josefin Slab', serif;
+  font-style italic
+  text-align center
+  
 .post
   margin-bottom 5em
+  .emblock-1
+    height 1em
+  .text
+    min-height 180px
+  .small-space
+    min-height 4em
+  a, a:visited, a:active
+    text-decoration none
+    border-bottom: 1px TextMainColor dotted;
+  a:hover
+    color black
+    text-decoration none
+    border-bottom: 1px TextMainColor solid;
+    border: none;
+  .description
+    description()
+  .darkband
+    background-color TextSpecialColor
+    position relative
+    margin-left -40px
+    margin-right -40px
+    padding-left 40px
+    padding-right 40px
+    padding-top 1.5em
+    padding-bottom 0.5em
+    box-shadow inset 0 4px 0px darken(TextSpecialColor, 10%), inset 0 -4px 0px darken(TextSpecialColor, 10%);
+    .description
+      color WallColor
+    a, a:visited, a:active
+      color WallColor
+      border-bottom: 1px darken(WallColor, 50%) dotted;
+    a:hover
+      color darken(WallColor, 50%)
+      text-decoration none
+      border-bottom: 1px WallColor solid;
+      border: none;
+  ul
+    li
+      line-height 1.5em
+      list-style-type: circle;
+      font-family: 'Josefin Slab', serif;
 
 .wall
   margin-top 20px
@@ -38,6 +88,8 @@ a
       small
         position relative
         bottom 0.25em
+  .content-line
+    padding-top 1em
   #title-content
     width auto
     
@@ -169,6 +221,15 @@ footer-background-color = WallColor
 
 .gitlog
   text-align center
+  a, a:visited, a:active
+    text-decoration none
+    border-bottom: 1px TextMainColor dotted;
+
+  a:hover
+    color black
+    text-decoration none
+    border-bottom: 1px TextMainColor full;
+    border: none;
   .title-section
     padding-bottom 2em
   .bar
@@ -189,7 +250,7 @@ footer-background-color = WallColor
     @media screen and (max-width: width-sm)
       display none
     .log
-      min-height 120px
+      min-height 160px
     .subject
       text-align center
       color alpha(color-primary-3, 50%)
@@ -200,6 +261,23 @@ footer-background-color = WallColor
 .side-img
   margin 0
   width 100%
+
+imgpost(imgh)
+  -webkit-filter: grayscale(30%)
+  filter: grayscale(30%)
+  overflow hidden
+  object-fit cover
+  width 100%
+  height imgh
+  -moz-box-shadow 2px 2px 8px rgba(0, 0, 0, 0.5)
+  -webkit-box-shadow 2px 2px 8px rgba(0, 0, 0, 0.5)
+  box-shadow 2px 2px 8px rgba(0, 0, 0, 0.5)
+  
+.img-post
+  imgpost(150px)
+  
+.img-post-big
+  imgpost(220px)
 
 [class*='col-'].no-gutter
   padding-right 0
