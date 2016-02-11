@@ -13,6 +13,7 @@ html
     link(rel='stylesheet', href='/font-awesome/css/font-awesome.min.css')
     link(rel='stylesheet', href='/bootstrap-social/bootstrap-social.css')
     link(rel='stylesheet', href='/layout.css')
+    link(rel='stylesheet', href='/title.css')
     link(rel='stylesheet', href='/block-graph.css')
     link(rel='stylesheet', href='/horiz-graph-64.css')
     script(src='/jquery/jquery.min.js')
@@ -30,45 +31,4 @@ html
                 a(href='#', class='close', data-dismiss='alert', aria-label='close') &times;
                 p #{m.msg}
       block content
-    .footer
-      .container.footer-content
-        div.col-sm-4.col-xs-offset-4
-        if git
-          .gitlog
-            .title-section.row
-              .col-m-4.col-m-offset-4.col-xs-12
-                if git.branch
-                  p.col-xs-4 branch:
-                    br 
-                    a(href='https://github.com/xoorath/introspection/tree/#{git.branch}') #{git.branch}
-                if git.sha
-                  p.col-xs-4 commit:
-                    br
-                    a(href='https://github.com/xoorath/introspection/commit/#{git.sha.long}') #{git.sha.short}
-                if git.tag
-                  p.col-xs-4 tag:
-                  br
-                  span #{git.tag}
-            if git.history
-              .bar
-                span recent changes
-              .row.history
-                each log in git.history.length ? git.history : [['no history to show']]
-                  .log.col-sm-4.section
-                    a(href='https://github.com/xoorath/introspection/commit/#{log.commit.long_hash}') #{log.author.date.from_now}
-                    span.spacer by 
-                      a(href='https://github.com/#{log.author.name}') #{log.author.name}
-                    if log.message.subject && log.message.subject != ""
-                      div.subject #{log.message.subject}
-                    if log.message.body && log.message.body != ""
-                      div.body #{log.message.body}
-        hr
-        if path == "/"
-          if !user
-            a(href='/login')#loginout +
-          else
-            a(href='/signout')#loginout - 
-            a(href='/post')#loginout p 
-        span#attribution
-          a(href="http://twitter.com/xoorath")#author Jared Thomson 
-          span#copyright © 2016 
+    include widgets/footer.jade

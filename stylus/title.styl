@@ -1,0 +1,75 @@
+@import "colors"
+@import "hover-bracket"
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab')
+
+.tri-bracket
+  padding-left 1em
+  padding-right 1em
+  text-align center
+  pointer-events none
+  transition text-shadow 0.29s
+  text-shadow -0.05em 0 red, 0.05em 0 cyan
+  #hoverarea
+    pointer-events all
+.tri-bracket::before, .tri-bracket::after
+  display inline-block
+  opacity 0
+  transition transform 0.3s, opacity 0.29s
+  color TitleColor
+.tri-bracket::before
+  padding-top 0
+  content '◮◬◭'
+  font-size 1.5em
+  transform translateX(60px)
+  padding-bottom 0.5em
+.tri-bracket::after
+  padding-top 0
+  font-size 1.5em
+  content '◭◬◮'
+  transform translateX(-(60px))
+.tri-bracket:hover::before, .tri-bracket:hover::after, .tri-bracket:focus::before, .tri-bracket:focus::after
+  opacity 1
+  transform translateX(0)
+.tri-bracket:hover
+  text-shadow -0.1em 0 red, 0.1em 0 cyan
+
+#title-content
+  display inline
+  #maintitle
+    margin-bottom 1em
+    h1, h2, h3, h4, h5, h6
+      text-align center
+      padding 0
+      margin 0
+      display inline-block
+    a
+      text-decoration none
+      color TitleColor
+    a:hover
+      text-decoration none
+      color TitleColor
+  i
+    color SubtitleColor
+  #links
+    padding-top 1em
+    padding-right 1em
+    display block
+    text-align right
+    height 1em
+    ul
+      padding 0
+      margin 0
+    li
+      text-align right
+      display inline
+      color SubtitleColor
+      a
+        color SubtitleColor
+        text-decoration none
+        transition color 0.3s
+      a:hover
+        color darken(SubtitleColor, 20%)
+    li:not(:last-child)
+      padding-right 1em
+    li:not(:first-child)
+      padding-left 0em

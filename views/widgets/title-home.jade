@@ -1,17 +1,15 @@
-div.wall
-  div.content#title-content
-    div.row
-      h1 
-        a(href="/") XOORATH
-      h5 A COLLECTION OF WORKS
-      ul#title-list
-        li
-          a(href="http://twitter.com/xoorath").fa.fa-twitter
-        li
-          a(href="http://github.com/xoorath").fa.fa-github-alt
-        li
-          a(href="http://scribble.city").fa.fa-gamepad
-        li
-          a(href="mailto:jared@xoorath.com").fa.fa-envelope
-        li
-          a(href="https://docs.google.com/document/d/1h5VOnS2i0NrOV2C4EjRFwZyYPV9wSmB3KXqr5dXgoF4/edit?usp=sharing").fa.fa-file-text
+div#title-content
+  span#links
+    ul
+      li #[a(href="/wiki") wiki]
+      li &middot;
+      li #[a(href="/about") about]
+      li &middot;
+      li #[a(target="_blank" href="https://docs.google.com/document/d/1h5VOnS2i0NrOV2C4EjRFwZyYPV9wSmB3KXqr5dXgoF4/edit?usp=sharing") resume]
+  span#maintitle
+    div.tri-bracket
+      div
+        a(href="/")#hoverarea
+          h4 A COLLECTION OF WORKS BY
+          br
+          h1 JARED THOMSON

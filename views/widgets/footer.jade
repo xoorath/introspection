@@ -1,0 +1,52 @@
+.footer
+  .container.footer-content
+    div.col-sm-4.col-xs-offset-4
+    if git
+      .gitlog
+        .title-section.row
+          .col-m-4.col-m-offset-4.col-xs-12
+            if git.branch
+              span.col-xs-4
+                div.gitinfo
+                  i — branch — 
+                a(target="_blank" href='https://github.com/xoorath/introspection/tree/#{git.branch}') #{git.branch}
+            if git.sha
+              span.col-xs-4
+                div.gitinfo
+                  i — commit —
+                a(target="_blank" href='https://github.com/xoorath/introspection/commit/#{git.sha.long}') #{git.sha.short}
+            if git.tag
+              span.col-xs-4
+                div.gitinfo
+                  i — tag —
+                span #{git.tag}
+        if git.history
+          .bar
+            span recent changes
+          .row.history
+            each log in git.history.length ? git.history : [['no history to show']]
+              .log.col-sm-4.section
+                span #[a(target="_blank" href='https://github.com/xoorath/introspection/commit/#{log.commit.long_hash}') #{log.author.date.from_now}] by #[a(target="_blank" href='https://github.com/#{log.author.name}') #{log.author.name}]
+                if log.message.subject && log.message.subject != ""
+                  div.subject #{log.message.subject}
+                if log.message.body && log.message.body != ""
+                  div.body #{log.message.body}
+    hr
+    if path == "/"
+      div.col-sm-4
+        if !user
+          a(href='/login')#loginout +
+        else
+          a(href='/signout')#loginout - 
+          a(href='/post')#loginout p 
+    div.col-sm-4#icons
+      ul
+        li
+          a(target="_blank" href="http://twitter.com/xoorath").fa.fa-twitter
+        li
+          a(target="_blank" href="http://github.com/xoorath").fa.fa-github-alt
+        li
+          a(href="mailto:jared@xoorath.com").fa.fa-envelope
+    div.col-sm-4#attribution
+      a(href="/about")#author Jared Thomson 
+      span#copyright © 2016 

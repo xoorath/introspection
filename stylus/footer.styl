@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,700');
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
+
+footer-background-color = WallColor
+
+.footer
+  @media print
+    display none !important
+  a 
+    text-decoration: none;
+    color LinkColor
+  background-color footer-background-color
+  padding-top 2em
+  
+  #loginout
+    display inline-block
+    text-align left
+    padding 0
+  #icons
+    text-align center
+    font-size 1.5em
+    display inline-block
+    li
+      display inline-block
+    li:not(:last-child)
+      padding-right 1em
+    li:not(:first-child)
+      padding-left 0em
+    a
+      transition color 0.3s
+    a:hover
+      color black
+  #attribution
+    padding 0
+    text-align right
+    display inline-block
+    #author
+      font-weight bold
+      color LinkColor
+      transition color 0.3s
+    #author:hover
+      color black
+    #copyright
+      font-weight none
+      color LinkColor
+    #licence
+      color LinkColor
+  hr
+    border-color darken(footer-background-color, 20%)
+.gitlog
+  text-align center
+  a, a:visited, a:active
+    text-decoration none
+    border-bottom: 1px TextMainColor dotted;
+  a:hover
+    color black
+    text-decoration none
+    border-bottom: 1px TextMainColor full;
+    border: none;
+  .gitinfo
+    margin-bottom 0.5em
+  .title-section
+    padding-bottom 2em
+  .bar
+    @media screen and (max-width: width-sm)
+      display none
+    height 1px
+    background-color darken(footer-background-color, 20%)
+    text-align center
+    span
+      background-color footer-background-color
+      position relative
+      padding-left 1em
+      padding-right 1em
+      top -0.5em
+      font-style italic
+  .history
+    padding-top 2em
+    @media screen and (max-width: width-sm)
+      display none
+    .log
+      min-height 160px
+    .subject
+      padding-top 0.5em
+      text-align left
+      color alpha(color-primary-3, 70%)
+    .body
+      padding-top 0.5em
+      text-align left
+      color alpha(color-primary-1, 70%)
