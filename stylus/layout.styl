@@ -9,6 +9,9 @@
 .row
   margin-left 0
   margin-right 0
+.no-col-pad
+  padding-left 0
+  padding-right 0
 
 body
   padding 5px
@@ -39,17 +42,17 @@ description()
 .post
   line-height 20px // make it a bit more readable, especially with the hacky link underlines
   margin-bottom 5em
-  h3
+  h1, h2, h3, h4
     display block
     margin-bottom 0
     padding-bottom 0
   subtitle
     margin-bottom 1em
     display block
+    color #a12
+    text-shadow: 0.06em 0 cyan;
   .emblock-1
     height 1em
-  .text
-    min-height 180px
   .small-space
     min-height 4em
   a, a:visited, a:active

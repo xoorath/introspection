@@ -1,0 +1,30 @@
+block data
+
+div.wall
+  .content#inner-content
+    div.row.post
+      h2.color-glitch-solid #{title}
+      if subtitle
+        subtitle #{subtitle}
+        div.row
+          if imgMain
+            div.col-sm-6.no-col-pad
+              block textMain
+            div.col-sm-6
+              img(src=imgMain.img).img-post-big.img-responsive
+              p.description #[a(href=imgMain.link) #{imgMain.txt}]
+          else
+            div.col-sm-12.text
+              block textMain
+          div.emblock-1
+        if darkband
+          div.row.darkband
+            for drkimg in darkband.images
+              div(class=darkband.size)
+                img(src=drkimg.img).img-post.img-responsive
+                p.description #[a(href=drkimg.link) #{drkimg.txt}]
+- // clear out the state, so it doesn't get carried from post to post included in the same layout.
+- title = undefined;
+- subtitle = undefined;
+- imgMain = undefined;
+- darkband = undefined;

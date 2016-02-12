@@ -1,4 +1,3 @@
-
 extends layout
 
 block includes
@@ -9,99 +8,6 @@ block content
   div.row
     +message
   div.row
-    div.wall
-      .content#inner-content
-        div.row.post
-          h3.color-glitch-solid DIGITAL
-          subtitle programming & games
-          div.row
-            div.col-sm-6.text
-              p #[strong #[a(href="/wiki") Visit my wiki]] to see a full collection of my works or jump to one of the following categories of interest.
-              ul
-                li #[a(href="/wiki/ubisoft") Video games at Ubisoft Montreal]
-                li #[a(href="/wiki/snowedin") Projects at Snowed In Studios]
-                li #[a(href="/wiki/indie") Independent games]
-                li #[a(href="/wiki/gamejam") Game jams]
-                li #[a(href="/wiki/artcode") Art-code projects]
-                li #[a(href="/wiki/mobile") Mobile games]
-                li #[a(href="/wiki/consolepc") Console & PC games]
-                li #[a(href="/wiki/programming") All programming projects]
-            div.col-sm-6
-              img(src="/img/forhonor_game1.jpg").img-post-big.img-responsive
-              p.description #[a(href="/wiki/ubisoft/forhonor") For Honor]
-          div.emblock-1
-          div.row.darkband
-            div.col-sm-4
-              img(src="/img/watchdogs_game1.jpg").img-post.img-responsive
-              p.description #[a(href="/wiki/ubisoft/watchdogs") Watch Dogs]
-            div.col-sm-4
-              img(src="/img/scribblecity_game2.png").img-post.img-responsive
-              p.description #[a(href="/wiki/indie/scribblecity") Scribble City]
-            div.col-sm-4
-              img(src="/img/citizenscientists_art1.png").img-post.img-responsive
-              p.description #[a(href="/wiki/indie/citizenscientists") Citizen Scientists]
-    div.wall
-      .content#inner-content
-        div.row.post
-          h3.color-glitch-solid MECHANICAL
-          subtitle woodworking and making
-          div.row
-            div.col-sm-6.text
-              p #[strong I like to work with my hands] creating sawdust and sparks.
-              p #[strong #[a(href="/wiki") Over on my wiki]] you'll find a list of my physical projects, a journal of their creation and links to #[a(href="#") my store] where you can buy my work, when available. See the links below for a categorized index.
-              ul
-                li #[a(href="/wiki/woodworking") Woodworking]
-                li #[a(href="/wiki/foundrywork") Foundrywork]
-                li #[a(href="/wiki/blacksmithing") Blacksmithing]
-                li #[a(href="/wiki/rc") RC Aircraft]
-                li #[a(href="/wiki/cnc") CNC Projects] with #[a(target="_blank" href="http://thecanadianmaker.com/") The Canadian Maker]
-            div.col-sm-6
-              img(src="/img/ruin1.jpg").img-post-big.img-responsive
-              p.description #[a(href="/wiki/cnc/ruin") Ruin]
-            div.emblock-1
-          div.row.darkband
-            div.col-sm-4
-              img(src="/img/goblinking1.jpg").img-post.img-responsive
-              p.description #[a(href="/wiki/foundrywork/goblin") the goblin king]
-            div.col-sm-4
-              img(src="/img/mallet1.jpg" style="object-position: 50% 35%;").img-post.img-responsive
-              p.description #[a(href="/wiki/woodworking/mallet") mallet]
-            div.col-sm-4
-              img(src="/img/goblinking1.jpg").img-post.img-responsive
-              p.description #[a(href="/wiki/foundrywork/goblin") the goblin king]
-    div.wall
-      .content#inner-content
-        div.row.post
-          h3.color-glitch-solid THE BIZZARE
-          subtitle brewing and other arts
-          div.row
-            div.col-sm-12.small-space
-              p These projects are my misfits. From strange art, to brewing and writing they do not always fit into software or crafts but often somewhere inbetween. Here you'll find stubs of projects, games and other creations that need a home and have found it here.
-              p There are no categories in the bizzare, just the bizzare itself. You can visit it here at #[a(href="/wiki/bizzare") wiki/bizzare].
-          div.row.darkband
-            div.col-sm-3
-              img(src="/img/profile_scream.jpg").img-post.img-responsive
-              p.description #[a(href="/wiki/artcode/anagram") image anagrams]
-            div.col-sm-3
-              img(src="/img/laser1.jpg" style="object-position: 0% 50%;").img-post.img-responsive
-              p.description #[a(href="/wiki/photography/laser") laser photography]
-            div.col-sm-3
-              img(src="/img/brewing1.jpg" style="object-position: 50% 15%;").img-post.img-responsive
-              p.description #[a(href="/wiki/brewing/therabbit") black ipa, the rabbit]
-            div.col-sm-3
-              img(src="/img/goblinking1.jpg").img-post.img-responsive
-              p.description #[a(href="/wiki/foundrywork/goblin") the goblin king]
-            div.col-sm-3
-              img(src="/img/xiabotnia_game2.png").img-post.img-responsive
-              p.description #[a(href="/wiki/artcode/anagram" style="object-position: 70% 50%;") xiabotnia]
-            div.col-sm-3
-              img(src="/img/laser1.jpg" style="object-position: 0% 50%;").img-post.img-responsive
-              p.description #[a(href="/wiki/photography/laser") laser photography]
-            div.col-sm-3
-              img(src="/img/brewing1.jpg" style="object-position: 50% 15%;").img-post.img-responsive
-              p.description #[a(href="/wiki/brewing/therabbit") black ipa, the rabbit]
-            div.col-sm-3
-              img(src="/img/goblinking1.jpg").img-post.img-responsive
-              p.description #[a(href="/wiki/foundrywork/goblin") the goblin king]
-        div.row
-          #endofpage
+    include posts/digital.jade
+    include posts/mechanical.jade
+    include posts/bizzare.jade

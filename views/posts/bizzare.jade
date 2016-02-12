@@ -1,0 +1,38 @@
+extends post.jade
+
+block data
+  // readability
+  -var scream = {img:'img/profile_scream.jpg', link:'/wiki/artcode/anagram', txt:'Image Anagrams'}
+  -var laser = {img:'img/laser1.jpg', link:'/wiki/photography/laser', txt:'Laser photography'}
+  -var therabbit = {img:'/img/brewing1.jpg', link:'/wiki/brewing/therabbit', txt:'Black IPA, The Rabbit'}
+  -var xiabotnia = {img:'/img/xiabotnia_game2.png', link:'/wiki/gamejam/xiabotnia', txt:'Xiabotnia'}
+  // required data:
+  -var title = 'THE BIZZARE'; 
+  -var subtitle = 'brewing and other arts';
+  -var darkband = {size:'col-sm-3', images:[scream, laser, therabbit, xiabotnia, laser, scream, xiabotnia, therabbit]};
+
+block textMain
+  p These projects are my misfits. From strange art, to brewing and writing they do not always fit into software or crafts but often somewhere inbetween. Here you'll find stubs of projects, games and other creations that need a home and have found it here.
+  p There are no categories in the bizzare, just the bizzare itself. You can visit it here at #[a(href="/wiki/bizzare") wiki/bizzare].
+  div.emblock-1
+
+
+    //- div.wall
+    //-   .content#inner-content
+    //-     div.row.post
+    //-       h3.color-glitch-solid THE BIZZARE
+    //-       subtitle brewing and other arts
+    //-       div.row
+    //-         div.col-sm-12.small-space
+
+    //-           img(src="/img/xiabotnia_game2.png").img-post.img-responsive
+    //-           p.description #[a(href="/wiki/artcode/anagram" style="object-position: 70% 50%;") xiabotnia]
+    //-         div.col-sm-3
+    //-           img(src="/img/laser1.jpg" style="object-position: 0% 50%;").img-post.img-responsive
+    //-           p.description #[a(href="/wiki/photography/laser") laser photography]
+    //-         div.col-sm-3
+    //-           img(src="/img/brewing1.jpg" style="object-position: 50% 15%;").img-post.img-responsive
+    //-           p.description #[a(href="/wiki/brewing/therabbit") black ipa, the rabbit]
+    //-         div.col-sm-3
+    //-           img(src="/img/goblinking1.jpg").img-post.img-responsive
+    //-           p.description #[a(href="/wiki/foundrywork/goblin") the goblin king]
