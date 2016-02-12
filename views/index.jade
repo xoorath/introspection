@@ -1,13 +1,43 @@
 extends layout
 
 block includes
+  link(rel='stylesheet', href='/landing.css')
 
 block content
   div.row
     include ./widgets/title-home.jade
   div.row
     +message
-  div.row
-    include posts/digital.jade
-    include posts/mechanical.jade
-    include posts/bizzare.jade
+  div.row#landing
+    div.col-sm-4
+      div.wall.post
+        span.landingtitle
+          h3.color-glitch-solid #[a(href="/digital") DIGITAL]
+          div.darkband
+            h5 programming and games
+          ul
+            li #[a(href="") Video Games]
+            li #[a(href="") Programming]
+            li #[a(href="") Indie Games]
+            li #[a(href="") Open Source]
+    div.col-sm-4
+      div.wall.post
+        span.landingtitle
+          h3.color-glitch-solid #[a(href="/mechanical") MECHANICAL]
+          div.darkband
+            h5 woodworking and making
+          ul
+            li #[a(href="") Woodworking]
+            li #[a(href="") Metalworking]
+            li #[a(href="") CNC] with #[a(href="") The&nbsp;Canadian&nbsp;Maker]
+    div.col-sm-4
+      div.wall.post
+        span.landingtitle
+          h3.color-glitch-solid #[a(href="/bizzare") THE BIZZARE]
+          div.darkband
+            h5 brewing and other arts
+          ul
+            li #[a(href="") Brewing]
+            li #[a(href="") Artcode]
+            li #[a(href="") Hacking]
+            li #[a(href="") Photography]

@@ -98,6 +98,21 @@ module.exports = {
       res.render('index', renderParam(req, {}));
     });
 
+    router.get('/digital', function(req, res) {
+      console.log('router: /digital');
+      res.render('digital', renderParam(req, {}));
+    });
+
+    router.get('/mechanical', function(req, res) {
+      console.log('router: /mechanical');
+      res.render('mechanical', renderParam(req, {}));
+    });
+
+    router.get('/bizzare', function(req, res) {
+      console.log('router: /bizzare');
+      res.render('bizzare', renderParam(req, {}));
+    });
+
     router.get('/wiki/:entry*', function(req, res, next) {
       console.log('router: /wiki');
       var root = req.params.entry;

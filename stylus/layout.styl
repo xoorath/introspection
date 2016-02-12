@@ -13,6 +13,10 @@
   padding-left 0
   padding-right 0
 
+@keyframes animatedBackground
+  from { background-position: 0 0; }
+  to { background-position: 211px 422px; }
+
 body
   padding 5px
   //font 14px "Merriweather", serif
@@ -23,6 +27,8 @@ body
   background-color BackgroundColor
   background-image: url(/img/bg.png);
   color TextMainColor
+  animation animatedBackground 24s linear infinite;
+  
 
 h1, h2, h3, h4, h5, h6, subtitle, blockquote, em, i
   font-family: 'Josefin Slab', serif;
@@ -30,6 +36,8 @@ h1, h2, h3, h4, h5, h6, subtitle, blockquote, em, i
 
 .color-glitch-solid
   text-shadow: -0.05em 0 red, 0.05em 0 cyan;
+  clip: rect(44px, 450px, 56px, 0);
+
 a
   color black
 
