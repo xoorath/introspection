@@ -1,20 +1,9 @@
+extends posts/post.jade
 
-extends layout
+block data
+  // required data:
+  -var title = #{title} || 'title not set'; 
+  -var subtitle = #{subtitle} || 'subtitle not set';
 
-block includes
-
-block content
-  div.row
-    include ./widgets/title-home.jade
-  div.row
-    +message
-  div.row
-    div.wall
-      .content#inner-content
-        div.row
-          h3=wikipath
-            small : a place for things
-        div.row
-          div!= md.makeHtml(wiki.content)
-        div.row
-          #endofpage
+block textMain
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum illo nesciunt hic expedita consectetur pariatur ullam. Fugiat voluptatem rem voluptatibus, necessitatibus aut nostrum, magnam velit optio? Esse quaerat quae mollitia!

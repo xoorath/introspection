@@ -1,23 +1,26 @@
 extends layout
 
 block content
-	div.wall
-		.content.title-content
-			h1= message
-			if error
-				if error.status
-					h2= error.status
-				else
-					h2 no status to show.
-			else
-				h2 no error to show
-	div.wall
-		.content
-			h3 callstack:
-			if error
-				if error.stack
-					pre #{error.stack}
-				else
-					pre no stack to show
-			else
-				pre no error to show
+  div.row
+    include ./widgets/title-home.jade
+  div.row
+    +message
+  div.wall
+    .content
+      h1= message
+      if error
+        if error.status
+          h2= error.status
+        else
+          h2 no status to show.
+      else
+        h2 no error to show
+      h3 callstack:
+      if error
+        if error.stack
+          pre #{error.stack}
+        else
+          pre no stack to show
+      else
+        pre no error to show
+    .content-line
