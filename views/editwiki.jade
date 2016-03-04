@@ -30,9 +30,6 @@ block content
     +message
   div.row
     div.wall
-      .content#postpreview
-  div.row
-    div.wall
       .content#inner-content
         div.row
           if wiki
@@ -43,16 +40,20 @@ block content
               small= wikipath
           h3 COMMAND
             form(class='form-editwiki', action='/editwiki', method='POST')
-              .col-sm-6
-                +input_txt('wiki', 'wikipath', wikipath, (wiki ? wiki.wikipath : null) || wikipath)
-                +input_txt('title', 'title', wikipath, (wiki ? wiki.title : null) || '')
-                +input_txt('subtitle', 'subtitle', '', (wiki ? wiki.subtitle : null) || '')
-                +input_txtarea('content', 'content', '', (wiki ? wiki.content : null) || '')
-                //+input_txt('style', 'style', '', (wiki ? wiki.style : null) || '')
-                .row
-                  br
-                  .col-sm-5.col-sm-offset-2
-                    a(class='btn btn-sm btn-primary btn-block', id='submit') POST
-                  .col-sm-5
-                    a(class='btn btn-sm btn-primary btn-block', id='preview', href='#content') PREVIEW
+
+              +input_txt('wiki', 'wikipath', wikipath, (wiki ? wiki.wikipath : null) || wikipath)
+              +input_txt('title', 'title', wikipath, (wiki ? wiki.title : null) || '')
+              +input_txt('subtitle', 'subtitle', '', (wiki ? wiki.subtitle : null) || '')
+              +input_txt('imgmain', 'imgmain', '', (wiki ? wiki.imgmain : null) || '')
+              +input_txt('darkband', 'darkband', '', (wiki ? wiki.darkband : null) || '')
+              +input_txtarea('content', 'content', '', (wiki ? wiki.content : null) || '')
+              .row
+                br
+                .col-sm-5.col-sm-offset-2
+                  button(class='btn btn-sm btn-primary btn-block', id='submit') POST
+                .col-sm-5
+                  a(class='btn btn-sm btn-primary btn-block', id='preview', href='#content') PREVIEW
               span.clearfix
+    div.row
+      div.wall
+        .content#postpreview

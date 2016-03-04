@@ -113,6 +113,10 @@ module.exports = {
       res.render('bizzare', renderParam(req, {}));
     });
 
+    function EditWiki(req, res, next, wikipath, wiki) {
+      res.render('editwiki', renderParam(req, {wikipath:wikipath, wiki:wiki}));
+    }
+
     function GetWiki(req, res, next) {
       console.log('router: /wiki');
       var root = '/' + (req.params.entry || '');
@@ -122,29 +126,26 @@ module.exports = {
       if(sub !== null) {
         wikipath += sub;
       }
-/*
-path: String,
-      title: String,
-      subtitle: String,
-      content: String,
-      style: String,
-      author: String,
-      date: String
-*/
 
+  
       wikimodel.findOne({
         'path':wikipath
       }, 
       function(err, wiki) {
         if(!err && !wiki) {
-          var err = new Error('Page not found: ' + root + sub);
-          err.status = 404;
-          next(err);
+          if(req.isAuthenticated()) {
+            EditWiki(req, res, next, wikipath, null);
+            return;
+          } else {
+            var err = new Error('Page not found: ' + root + sub);
+            err.status = 404;
+            next(err);
+            return;
+          }
         }
 
-        console.log(err, wiki);
         if(req.isAuthenticated()){
-          res.render('editwiki', renderParam(req, {wikipath:wikipath, wiki:wiki}));
+          EditWiki(req, res, next, wikipath, wiki);
         }
         if(err != null) {
           res.status(err.status || 500);
@@ -227,9 +228,11 @@ path: String,
       failureFlash : true
     }));
 
-    router.post('/editwiki', function(req, res, next){
+    router.post('/editwiki', function(req, res, next) {
+      console.log('trying to edit wiki');
       if (req.isAuthenticated())
         return next();
+      console.log('edit wiki failed');
       req.flash("message", {style:"alert-danger", msg:"you need to be signed in to do that"});
       res.redirect('/');
     }, function (req, res) {
@@ -244,6 +247,13 @@ path: String,
         }
         return param;
       }
+
+      var TryGetOptionalParam = function(req, res, name) {
+        var param = req.param(name, null);
+        if(param == null)
+          param = '';
+        return param;
+      }
       
       var wikipath = TryGetRequireParam(req, res, 'wikipath', true);
       if(!wikipath)
@@ -253,17 +263,17 @@ path: String,
       if(!title)
         return console.error('no wiki title');
 
-      var subtitle = TryGetRequireParam(req, res, 'subtitle', false);
-      if(!subtitle)
-        return console.error('no wiki subtitle');
+      var subtitle = TryGetOptionalParam(req, res, 'subtitle');
       
       var content = TryGetRequireParam(req, res, 'content', true);
       if(!content)
         return console.error('no wiki content');
 
-      var style = TryGetRequireParam(req, res, 'style', false);
-      if(!style)
-        return console.error('no wiki style');
+      var imgmain = TryGetOptionalParam(req, res, 'imgmain');
+      var darkband = TryGetOptionalParam(req, res, 'darkband');
+
+      console.log('imgmain: ', imgmain);
+      console.log('darkband: ', darkband);
 
       var date = new Date().toJSON().slice(0,10);
       var author = req.user.displayname;
@@ -273,7 +283,9 @@ path: String,
         title:title,
         subtitle:subtitle,
         content:content,
-        style: style,
+        imgmain: imgmain,
+        darkband:darkband,
+        style:'default',
         date: date,
         success:function() {
           req.flash("message", {style:"alert-success", msg:("Wiki updated.")});

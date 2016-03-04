@@ -42,6 +42,8 @@ var wiki = {
 		var author = data.author || ((req && req.user) ? req.user.displayName : 'Anonymous');
 		var title = data.title || path;
 		var subtitle = data.subtitle || '';
+		var imgmain = data.imgmain || '';
+		var darkband = data.darkband || '';
 		var content = data.content;
 		var style = data.style || this.GetStyles().Default;
 		var date = data.date || new Date().toJSON().slice(0,10);
@@ -82,6 +84,9 @@ var wiki = {
 					post.subtitle = subtitle;
 					post.content = content;
 					post.style = style;
+					post.imgmain = imgmain;
+					post.darkband = darkband;
+
 					post.author = author;
 					post.date = date;
 					post.save(function(err) {

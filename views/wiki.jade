@@ -1,9 +1,10 @@
-extends posts/post.jade
+extends layout
 
-block data
-  // required data:
-  -var title = #{title} || 'title not set'; 
-  -var subtitle = #{subtitle} || 'subtitle not set';
+block includes
 
-block textMain
-  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum illo nesciunt hic expedita consectetur pariatur ullam. Fugiat voluptatem rem voluptatibus, necessitatibus aut nostrum, magnam velit optio? Esse quaerat quae mollitia!
+block content
+  div.row
+    include ./widgets/title-home.jade
+  div.row
+    +message
+  include posts/wiki

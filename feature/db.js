@@ -38,6 +38,8 @@ db = {
 			subtitle: String,
 			content: String,
 			style: String,
+			imgmain: String,
+			darkband: String,
 			author: String,
 			date: String
 		});

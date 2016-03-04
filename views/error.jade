@@ -2,7 +2,7 @@ extends layout
 
 block content
   div.row
-    include ./widgets/title-home.jade
+    include ./widgets/title-mini.jade
   div.row
     +message
   div.wall
@@ -15,12 +15,12 @@ block content
           h2 no status to show.
       else
         h2 no error to show
-      h3 callstack:
       if error
+        h3 #{error}
         if error.stack
           pre #{error.stack}
         else
-          pre no stack to show
+          pre no stack.
       else
         pre no error to show
     .content-line
