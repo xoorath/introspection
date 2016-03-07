@@ -1,6 +1,7 @@
 extends layout
 
 block includes
+  script(src='/js/landing.js')
   link(rel='stylesheet', href='/landing.css')
 
 block content
@@ -9,35 +10,29 @@ block content
   div.row
     +message
   div.row#landing
-    div.col-sm-4
+    div.col-sm-6
       div.wall.post
         span.landingtitle
           h3.color-glitch-solid #[a(href="/wiki/digital") DIGITAL]
           div.darkband
             h5 programming and games
           ul
-            li #[a(href="/wiki/games/scribblecity") Scribble City]
-            li #[a(href="/wiki/code/introspection") Introspection]
-            li #[a(href="/wiki/games/ubisoft") Ubisoft Montreal]
-            //li #[a(href="") Game Jams]
-            //li #[a(href="") Open Source]
-    div.col-sm-4
+            li #[a(href="/wiki/digital") All Digital Projects]
+            li #[a(href="/wiki/digital/indie") All Indie Projects]
+            li #[a(href="/wiki/digital/indie/scribblecity") Scribble City]
+            li #[a(href="/wiki/digital/ubisoft/forhonor") For Honor]
+            li #[a(href="/wiki/digital/ubisoft") Ubisoft Montreal]
+          img(src="/img/xiabotnia_game2.png").img-responsive
+    div.col-sm-6
       div.wall.post
         span.landingtitle
           h3.color-glitch-solid #[a(href="/wiki/mechanical") MECHANICAL]
           div.darkband
-            h5 woodworking and making
+            h5 physical arts
           ul
+            li #[a(href="/wiki/make/woodworking") All Woodworking]
+            li #[a(href="/wiki/make/metalworking") All Metalworking]
             li #[a(href="/wiki/make/ruin") RUIN]
-            li #[a(href="/wiki/make/foundry") The Metal Foundry]
+            li #[a(href="/wiki/make/wavecoaster") Coasters]
             li #[a(href="/wiki/make/shopprojects") Shop Projects]
-    div.col-sm-4
-      div.wall.post
-        span.landingtitle
-          h3.color-glitch-solid #[a(href="/wiki/bizzare") THE BIZZARE]
-          div.darkband
-            h5 brewing and other arts
-          ul
-            li #[a(href="/wiki/brewing/therabbit") The Rabbit &middot; Black IPA]
-            li #[a(href="/wiki/artcode/imageanagram") Image Anagram]
-            li #[a(href="/wiki/artcode/xiabotnia") Xiabotnia]
+          img(src="img/brewing1.jpg").img-responsive
