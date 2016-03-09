@@ -168,10 +168,10 @@ module.exports = {
     router.get('/wiki', GetWiki);
     router.get('/wiki/:entry*', GetWiki);
 
-    router.get('/signup', isNotAuthenticated, function(req, res) {
-      console.log('router: /signup');
-      res.render('register', renderParam(req, {}));
-    });
+    //router.get('/signup', isNotAuthenticated, function(req, res) {
+      //console.log('router: /signup');
+      //res.render('register', renderParam(req, {}));
+    //});
 
     router.get('/login', isNotAuthenticated, function(req, res) {
       console.log('router: /login');
@@ -183,12 +183,6 @@ module.exports = {
       req.logout();
       res.redirect('/');
     });
-
-    // router.get('/home', isAuthenticated, function(req, res) {
-    //  console.log('router: /home');
-    //  res.render('home', renderParam(req, {}));
-    // });
-
 
     this.app = app;
     return this;
@@ -222,11 +216,11 @@ module.exports = {
       failureFlash : true
     }));
 
-    router.post('/signup', passport.authenticate('signup', {
-      successRedirect: '/wiki',
-      failureRedirect: '/signup',
-      failureFlash : true
-    }));
+    //router.post('/signup', passport.authenticate('signup', {
+      //successRedirect: '/wiki',
+      //failureRedirect: '/signup',
+      //failureFlash : true
+    //}));
 
     router.post('/editwiki', function(req, res, next) {
       console.log('trying to edit wiki');
