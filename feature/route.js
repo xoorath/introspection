@@ -114,7 +114,7 @@ module.exports = {
     });
 
     function EditWiki(req, res, next, wikipath, wiki) {
-      res.render('editwiki', renderParam(req, {wikipath:wikipath, wiki:wiki}));
+      res.render('editwiki', renderParam(req, {wikipath:wikipath, wiki:wiki, md:md}));
     }
 
     function GetWiki(req, res, next) {

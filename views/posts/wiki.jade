@@ -1,14 +1,15 @@
 extends post.jade
 
 block data
-  -var title=wiki.title || 'TITLE NOT SET';
-  -var subtitle=wiki.subtitle|| null;
-  -var imgMain = wiki.imgmain || null;
-  -var darkband = (wiki.darkband ? (wiki.darkband != '' ? JSON.parse(wiki.darkband) : null) : null);
-  -var imgMain = (wiki.imgmain ? (wiki.imgmain != '' ? JSON.parse(wiki.imgmain) : null) : null);
+  -var title= (wiki ? wiki.title : null) || 'TITLE NOT SET';
+  -var subtitle= (wiki ? wiki.subtitle : null) || null;
+  -var imgMain = (wiki ? wiki.imgmain : null) || null;
+  -var darkband = ((wiki ? wiki.darkband : null) ? (wiki.darkband != '' ? JSON.parse(wiki.darkband) : null) : null);
+  -var imgMain = ((wiki ? wiki.imgmain : null) ? (wiki.imgmain != '' ? JSON.parse(wiki.imgmain) : null) : null);
   //-var ruin = {img:'/img/ruin1.jpg', link:'/wiki/cnc/ruin', txt:'Ruin'};
   //-var imgMain = ruin;
   //-var darkband = {size:'col-sm-4', images:[goblinking, mallet, goblinking]};
 
 block textMain
-  != md.makeHtml(wiki.content)
+  if wiki
+    != md.makeHtml(wiki.content)

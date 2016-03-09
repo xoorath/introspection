@@ -28,6 +28,7 @@ block content
     include ./widgets/title-home.jade
   div.row
     +message
+  include posts/wiki
   div.row
     div.wall
       .content#inner-content
@@ -51,9 +52,4 @@ block content
                 br
                 .col-sm-5.col-sm-offset-2
                   button(class='btn btn-sm btn-primary btn-block', id='submit') POST
-                .col-sm-5
-                  a(class='btn btn-sm btn-primary btn-block', id='preview', href='#content') PREVIEW
               span.clearfix
-    div.row
-      div.wall
-        .content#postpreview

@@ -1,0 +1,14 @@
+extends post.jade
+
+block data
+  -var title='Index of ' + index.path;
+  -var subtitle= null;
+  -var imgMain = null;
+  -var darkband = null;
+  -var imgMain = null;
+  //-var ruin = {img:'/img/ruin1.jpg', link:'/wiki/cnc/ruin', txt:'Ruin'};
+  //-var imgMain = ruin;
+  //-var darkband = {size:'col-sm-4', images:[goblinking, mallet, goblinking]};
+
+block textMain
+  !{index.content}
