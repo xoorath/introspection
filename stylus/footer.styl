@@ -8,6 +8,9 @@ body, html
   padding 0
   margin 0
 
+footer-glitch()
+  text-shadow -0.08em 0 alpha(red, 0.5), 0.08em 0 alpha(cyan, 0.5)
+
 .footer
   @media print
     display none !important
@@ -18,15 +21,24 @@ body, html
   padding-top 2em
   width 100%
   #loginout
+    footer-glitch()
     display inline-block
     text-align left
+    @media screen and (max-width: width-sm)
+      display block
+      text-align center
     padding 0
   #icons
     text-align center
     font-size 1.5em
     display inline-block
+    @media screen and (max-width: width-sm)
+      display block
+    ul
+      padding 0
     li
       display inline-block
+      footer-glitch()
     li:not(:last-child)
       padding-right 1em
     li:not(:first-child)
@@ -39,6 +51,10 @@ body, html
     padding 0
     text-align right
     display inline-block
+    @media screen and (max-width: width-sm)
+      display block
+      text-align center
+    footer-glitch()
     #author
       font-weight bold
       color LinkColor
