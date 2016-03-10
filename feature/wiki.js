@@ -44,6 +44,7 @@ var wiki = {
 		var subtitle = data.subtitle || '';
 		var imgmain = data.imgmain || '';
 		var darkband = data.darkband || '';
+		var back = data.back || null;
 		var content = data.content;
 		var style = data.style || this.GetStyles().Default;
 		var date = data.date || new Date().toJSON().slice(0,10);
@@ -86,6 +87,7 @@ var wiki = {
 					post.style = style;
 					post.imgmain = imgmain;
 					post.darkband = darkband;
+					post.back = back;
 
 					post.author = author;
 					post.date = date;

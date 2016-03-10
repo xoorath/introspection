@@ -163,3 +163,22 @@ imgpost(imgh)
 [class*='col-'].no-gutter
   padding-right 0
   padding-left 0
+  
+.back
+  display inline-block
+  float right
+  margin-top 1em
+  margin-right 1em
+  border 0
+  a, a:visited, a:active
+    transition border-bottom 0.3s
+    color black
+    text-decoration none
+    border-bottom 0
+  a:hover
+    color black
+    text-decoration none
+    border-bottom 0
+  
+.back:before
+  content '· '

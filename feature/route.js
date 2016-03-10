@@ -98,21 +98,6 @@ module.exports = {
       res.render('index', renderParam(req, {}));
     });
 
-    router.get('/digital', function(req, res) {
-      console.log('router: /digital');
-      res.render('digital', renderParam(req, {}));
-    });
-
-    router.get('/mechanical', function(req, res) {
-      console.log('router: /mechanical');
-      res.render('mechanical', renderParam(req, {}));
-    });
-
-    router.get('/bizzare', function(req, res) {
-      console.log('router: /bizzare');
-      res.render('bizzare', renderParam(req, {}));
-    });
-
     function EditWiki(req, res, next, wikipath, wiki) {
       res.render('editwiki', renderParam(req, {wikipath:wikipath, wiki:wiki, md:md}));
     }
@@ -265,9 +250,7 @@ module.exports = {
 
       var imgmain = TryGetOptionalParam(req, res, 'imgmain');
       var darkband = TryGetOptionalParam(req, res, 'darkband');
-
-      console.log('imgmain: ', imgmain);
-      console.log('darkband: ', darkband);
+      var back = TryGetOptionalParam(req, res, 'back');
 
       var date = new Date().toJSON().slice(0,10);
       var author = req.user.displayname;
@@ -279,6 +262,7 @@ module.exports = {
         content:content,
         imgmain: imgmain,
         darkband:darkband,
+        back:back,
         style:'default',
         date: date,
         success:function() {

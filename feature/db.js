@@ -40,6 +40,7 @@ db = {
 			style: String,
 			imgmain: String,
 			darkband: String,
+			back: String,
 			author: String,
 			date: String
 		});

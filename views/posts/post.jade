@@ -1,8 +1,11 @@
 block data
-
+if back
+  - back = '<span class="back">' + back + '</span>';
 div.wall
   .content#inner-content
     div.row.post
+      if back
+        !{back}
       h2.color-glitch-solid #{title}
       if subtitle
         subtitle #{subtitle}
@@ -28,3 +31,4 @@ div.wall
 - subtitle = undefined;
 - imgMain = undefined;
 - darkband = undefined;
+- back = undefined

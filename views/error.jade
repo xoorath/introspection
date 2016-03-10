@@ -7,20 +7,21 @@ block content
     +message
   div.wall
     .content
-      h1= message
-      if error
-        if error.status
-          h2= error.status
-        else
-          h2 no status to show.
+      if error.status == 404
+        h1='Are you lost?'
+        pre #{path}
+        p If you got here from a broken link, please let me know: #[a(href="http://twitter.com/xoorath") @xoorath].
       else
-        h2 no error to show
-      if error
-        h3 #{error}
-        if error.stack
-          pre #{error.stack}
+        h1= message
+        if error
+          if error.status
+            h2= error.status
+          else
+            h2 no status to show.
         else
-          pre no stack.
-      else
-        pre no error to show
+          h2 no error to show
+        if error
+          h3 #{error}
+        else
+          pre no error to show
     .content-line
