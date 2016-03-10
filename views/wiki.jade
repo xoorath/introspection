@@ -1,6 +1,19 @@
 extends layout
 
 block includes
+  - var twitterimg = ((wiki ? wiki.imgmain : null) ? (wiki.imgmain != '' ? JSON.parse(wiki.imgmain) : null) : null);
+  - twitterimg = twitterimg ? twitterimg.img : 'noimg';
+  - var twitterdescription = wiki ? (wiki.subtitle ? wiki.subtitle : md.makeHtml(wiki.content)) : 'Jared Thomson : wiki';
+  meta(name='twitter:card' content='summary_large_image')
+  meta(name="twitter:site" content="@xoorath")
+  meta(name="twitter:creator" content="@xoorath")
+  meta(name="twitter:title" content='◬◬◬ Jared Thomson ◬◬◬ Wiki - ' + ((wiki ? wiki.title : null) || 'TITLE NOT SET'))
+  meta(name="twitter:description" content=twitterdescription)
+  if twitterimg
+    if twitterimg[0] == '/'
+      meta(name="twitter:image" content='http://jaredthomson.com'+twitterimg)
+    else
+      meta(name="twitter:image" content=twitterimg)
 
 block content
   div.row

@@ -46,7 +46,10 @@ div.wall
         div.row.darkband
           for drkimg in darkband.images
             div(class=darkband.size).darksize
-              img(src=drkimg.img).img-post.img-responsive
+              if drkimg.tall
+                img(src=drkimg.img).img-post-tall.img-responsive
+              else
+                img(src=drkimg.img).img-post.img-responsive
               if drkimg.txt
                 if drkimg.link
                   p.description #[a(href=drkimg.link) #{drkimg.txt}]
