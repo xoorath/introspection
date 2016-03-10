@@ -70,6 +70,16 @@ description()
     color black
     text-decoration none
     border-bottom 1px alpha(TextMainColor, 0) dotted
+  a.badlink, a.badlink:visited, a.badlink:active 
+    transition border-bottom 0.3s, color
+    color alpha(black, 0.7)
+    text-decoration none
+    font-style italic
+    border-bottom: 1px red dotted;
+  a.badlink:hover
+    color black
+    text-decoration none
+    border-bottom 1px alpha(red, 0) dotted
   .description
     description()
   .darkband
