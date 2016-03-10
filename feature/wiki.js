@@ -28,16 +28,6 @@ var wiki = {
 
 	*/
 	Update: function(path, data) {
-		/*
-		The data to fill: (See db.js)
-			path: String,
-			title: String,
-			subtitle: String,
-			content: String,
-			style: String,
-			author: String,
-			date: String
-		*/
 		var req = data.req;
 		var author = data.author || ((req && req.user) ? req.user.displayName : 'Anonymous');
 		var title = data.title || path;
@@ -46,6 +36,8 @@ var wiki = {
 		var darkband = data.darkband || '';
 		var back = data.back || null;
 		var content = data.content;
+		var hidden = data.hidden;
+		var construction = data.construction;
 		var style = data.style || this.GetStyles().Default;
 		var date = data.date || new Date().toJSON().slice(0,10);
 
@@ -88,6 +80,8 @@ var wiki = {
 					post.imgmain = imgmain;
 					post.darkband = darkband;
 					post.back = back;
+					post.hidden = hidden;
+					post.construction = construction;
 
 					post.author = author;
 					post.date = date;

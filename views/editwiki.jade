@@ -1,21 +1,25 @@
 mixin input_txt(label, name, placeholder, txt)
-  .row
-    br
-    .col-sm-2
-      label=label
-    .col-sm-10
-      input(type='text', name=name, id=name, class='form-control', placeholder=placeholder, value=txt)
+  .col-sm-2
+    label=label
+  .col-sm-10
+    input(type='text', name=name, id=name, class='form-control', placeholder=placeholder, value=txt)
 
-mixin input_txtarea(label, name, placeholder, txt)
-  .row
-    br
-    .col-sm-2
-      label=label
-    .col-sm-10
+mixin input_txtarea(label, name, placeholder, txt, code)
+  .col-sm-2
+    label=label
+  .col-sm-10
+    if code
+      textarea(name=name, id=name, class='form-control', placeholder=placeholder, style='font-family:"Courier New";')=txt
+    else
       textarea(name=name, id=name, class='form-control', placeholder=placeholder)=txt
 
-mixin input_const(name, value)
-  input(type='hidden', name=name, text=value)
+mixin input_checkbox(label, name, value)
+  .col-sm-2
+    label=label
+  .col-sm-10
+    div.checkbox
+      input(type='checkbox' id=name, value=value)
+      p=value
 
 extends layout
 
@@ -39,18 +43,18 @@ block content
           else
             h2 New Page : 
               small= wikipath
-          h3 COMMAND
-            form(class='form-editwiki', action='/editwiki', method='POST')
-
-              +input_txt('wiki', 'wikipath', wikipath, (wiki ? wiki.wikipath : null) || wikipath)
-              +input_txt('title', 'title', wikipath, (wiki ? wiki.title : null) || '')
-              +input_txt('subtitle', 'subtitle', '', (wiki ? wiki.subtitle : null) || '')
-              +input_txt('imgmain', 'imgmain', '', (wiki ? wiki.imgmain : null) || '')
-              +input_txt('darkband', 'darkband', '', (wiki ? wiki.darkband : null) || '')
-              +input_txt('back', 'back', '', (wiki ? wiki.back : null) || '')
-              +input_txtarea('content', 'content', '', (wiki ? wiki.content : null) || '')
-              .row
-                br
-                .col-sm-5.col-sm-offset-2
-                  button(class='btn btn-sm btn-primary btn-block', id='submit') POST
-              span.clearfix
+          form(class='form-editwiki', action='/editwiki', method='POST')
+            +input_txt('wiki', 'wikipath', wikipath, (wiki ? wiki.wikipath : null) || wikipath)
+            +input_txt('title', 'title', wikipath, (wiki ? wiki.title : null) || '')
+            +input_txt('subtitle', 'subtitle', '', (wiki ? wiki.subtitle : null) || '')
+            +input_txtarea('imgmain', 'imgmain', '', (wiki ? wiki.imgmain : null) || '', true)
+            +input_txtarea('darkband', 'darkband', '', (wiki ? wiki.darkband : null) || '', true)
+            +input_txt('back', 'back', '', (wiki ? wiki.back : null) || '')
+            +input_txtarea('content', 'content', '', (wiki ? wiki.content : null) || '')
+            +input_checkbox('hidden', 'hidden', (wiki ? wiki.hidden : '0'))
+            +input_checkbox('under construction', 'construction', (wiki ? wiki.construction : '0'))
+            .row
+              br
+              .col-sm-5.col-sm-offset-2
+                button(class='btn btn-sm btn-primary btn-block', id='submit') POST
+            span.clearfix

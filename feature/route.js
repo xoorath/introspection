@@ -196,7 +196,7 @@ module.exports = {
     var app = this.app;
 
     router.post('/login', passport.authenticate('login', {
-      successRedirect: '/wiki',
+      successRedirect: '/',
       failureRedirect: '/login',
       failureFlash : true
     }));
@@ -217,40 +217,45 @@ module.exports = {
     }, function (req, res) {
       console.log('editwiki');
 
-      var TryGetRequireParam = function(req, res, name, required) {
+      var TryGetRequireParam = function(req, res, name, required, redirect) {
         var param = req.param(name, null);
         if(param == null || (required && param == "")) {
           req.flash("message", {style:"alert-danger", msg:"no " + name + " param passed"});
-          res.redirect("/");
+          res.redirect(redirect);
           return null;
         }
         return param;
       }
 
-      var TryGetOptionalParam = function(req, res, name) {
+      var TryGetOptionalParam = function(req, res, name, def) {
         var param = req.param(name, null);
         if(param == null)
-          param = '';
+          param = def;
         return param;
       }
       
-      var wikipath = TryGetRequireParam(req, res, 'wikipath', true);
+      var wikipath = TryGetRequireParam(req, res, 'wikipath', true, '/');
       if(!wikipath)
         return console.error('no wiki path');
 
-      var title = TryGetRequireParam(req, res, 'title', true);
+      var title = TryGetRequireParam(req, res, 'title', true, '/wiki'+wikipath);
       if(!title)
         return console.error('no wiki title');
 
-      var subtitle = TryGetOptionalParam(req, res, 'subtitle');
+      var subtitle = TryGetOptionalParam(req, res, 'subtitle', '');
       
-      var content = TryGetRequireParam(req, res, 'content', true);
+      var content = TryGetRequireParam(req, res, 'content', true, '/wiki'+wikipath);
       if(!content)
         return console.error('no wiki content');
 
-      var imgmain = TryGetOptionalParam(req, res, 'imgmain');
-      var darkband = TryGetOptionalParam(req, res, 'darkband');
-      var back = TryGetOptionalParam(req, res, 'back');
+      var imgmain = TryGetOptionalParam(req, res, 'imgmain', '');
+      var darkband = TryGetOptionalParam(req, res, 'darkband', '');
+      var back = TryGetOptionalParam(req, res, 'back', '');
+      var hidden = TryGetOptionalParam(req, res, 'hidden', '0');
+      var construction = TryGetOptionalParam(req, res, 'construction', '0');
+
+      console.log('hidden: ', req.param(hidden));
+      console.log('construction: ', req.param(construction));
 
       var date = new Date().toJSON().slice(0,10);
       var author = req.user.displayname;
@@ -265,6 +270,8 @@ module.exports = {
         back:back,
         style:'default',
         date: date,
+        hidden: hidden,
+        construction: construction,
         success:function() {
           req.flash("message", {style:"alert-success", msg:("Wiki updated.")});
           res.redirect('/wiki'+wikipath);

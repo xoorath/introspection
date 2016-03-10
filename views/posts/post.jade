@@ -11,11 +11,33 @@ div.wall
         subtitle #{subtitle}
       div.row
         if imgMain && typeof imgMain !== 'string'
-          div.col-sm-6.no-col-pad
-            block textMain
-          div.col-sm-6
-            img(src=imgMain.img).img-post-big.img-responsive
-            p.description #[a(href=imgMain.link) #{imgMain.txt}]
+          div.imgMainContainer(style:"")
+            div.hidden-xs(style="width:50%; display:inline; float:right; margin-left:1em")
+              if imgMain.tall
+                img(src=imgMain.img).img-post-big-tall.img-responsive
+              else
+                img(src=imgMain.img).img-post-big.img-responsive
+              if imgMain.txt
+                if imgMain.link
+                  p.description #[a(href=imgMain.link) #{imgMain.txt}]
+                else
+                  p.description #{imgMain.txt}
+              else
+                br
+            div.visible-xs(style="width:100%;")
+              if imgMain.tall
+                img(src=imgMain.img).img-post-big-tall.img-responsive
+              else
+                img(src=imgMain.img).img-post-big.img-responsive
+              if imgMain.txt
+                if imgMain.link
+                  p.description #[a(href=imgMain.link) #{imgMain.txt}]
+                else
+                  p.description #{imgMain.txt}
+              else
+                br
+          
+          block textMain
         else
           div.col-sm-12.text
             block textMain
@@ -23,9 +45,15 @@ div.wall
       if darkband && typeof darkband !== 'string'
         div.row.darkband
           for drkimg in darkband.images
-            div(class=darkband.size)
+            div(class=darkband.size).darksize
               img(src=drkimg.img).img-post.img-responsive
-              p.description #[a(href=drkimg.link) #{drkimg.txt}]
+              if drkimg.txt
+                if drkimg.link
+                  p.description #[a(href=drkimg.link) #{drkimg.txt}]
+                else
+                  p.description #{drkimg.txt}
+              else
+                br
 - // clear out the state, so it doesn't get carried from post to post included in the same layout.
 - title = undefined;
 - subtitle = undefined;

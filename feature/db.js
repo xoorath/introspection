@@ -42,7 +42,9 @@ db = {
 			darkband: String,
 			back: String,
 			author: String,
-			date: String
+			date: String,
+			hidden: String, // "0" or "1"
+			construction: String // "0" or "1"
 		});
 		this.wiki_model = model;
 		return model;
