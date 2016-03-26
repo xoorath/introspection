@@ -3,6 +3,16 @@ extends layout
 block includes
   script(src='/js/landing.js')
   link(rel='stylesheet', href='/landing.css')
+  script(type="application/ld+json").
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name":"Jared Thomson",
+      "url": "http://jaredthomson.com",
+      "sameAs" : [
+        "http://www.twitter.com/xoorath"
+      ]
+    }
 
 block content
   div.row
@@ -32,7 +42,7 @@ block content
           ul
             li #[a(href="/wiki/mechanical/woodworking") All Woodworking]
             li #[a(href="/wiki/mechanical/metalworking") All Metalworking]
-            li #[a(href="/wiki/mechanical/ruin") RUIN]
-            li #[a(href="/wiki/mechanical/wavecoaster") Coasters]
-            li #[a(href="/wiki/mechanical/shopprojects") Shop Projects]
+            li #[a(href="/wiki/mechanical/woodworking/ruin") RUIN]
+            li #[a(href="/wiki/mechanical/woodworking/wavecoaster") Coasters]
+            li #[a(href="/wiki/mechanical/woodworking/deadblow") Deadblow]
           img(src="img/brewing1.jpg").img-responsive
